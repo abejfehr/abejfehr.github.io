@@ -1,8 +1,7 @@
 ---
 layout: post
 title: Solving Sudoku Programmatically
-cover: cover.jpg
-date:   2014-09-08 12:00:00
+date:   2014-09-09 12:00:00
 categories: posts
 ---
 
@@ -19,9 +18,10 @@ That being said, this should be easily done in most programming languages.
 The way I chose to format the puzzles that entered my solver were as 81 character long strings with periods(.) for the unknowns. Obviously there are many ways that these puzzles can be represented, and changing it wouldn't be all-too difficult.
 
 Let's start with a sample puzzle:
-
-`p1 = "...5....3...82...13....179.17.............3..6..712.4..4..6.....9........6..5.2.."`
-
+{% highlight python %}
+    p1 = "...5....3...82...13....179.17.............3..6..712.4..4..6.....9........6..5.2.."
+{% endhighlight %}
+<br />
 The most common way to solve sudoku puzzles in code, often used by beginners, is by keeping a list of *candidates* for each cell.
 
 ## Trivial Cases
