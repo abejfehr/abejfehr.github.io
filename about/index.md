@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About This Site
+description: Programming tips, tricks, and the ramblings of a confused Computer Science student.
 ---
 
 Hi.

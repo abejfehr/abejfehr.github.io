@@ -3,6 +3,7 @@ layout: post
 title: Positioning date markers in Cognos BI
 date:   2014-09-20 12:00:00
 categories: posts
+description: This is a guide which aims to teach how to position markers relative to a date in a Cognos Business Intelligence chart
 ---
 
 The charting engine in [Cognos BI](http://www-03.ibm.com/software/products/en/business-intelligence/) offers its users tons of customizability when visualizing their data. One of the most underrated features of these Cognos charts is *markers*. Markers are designed for representing particular points in a chart, as described in [the documentation](https://www-01.ibm.com/support/knowledgecenter/SSEP7J_10.2.1/com.ibm.swg.ba.cognos.ug_cr_rptstd.10.2.1.doc/c_add_markers_charts.html?lang=en).

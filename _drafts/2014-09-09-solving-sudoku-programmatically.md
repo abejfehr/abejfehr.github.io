@@ -3,6 +3,7 @@ layout: post
 title: Solving Sudoku Programmatically
 date:   2014-09-09 12:00:00
 categories: posts
+description: 
 ---
 
 Creating a sudoku solver is something that's commonly heard of as a Computer Science exercise. In my third year of my Bachelor's program I finally decided make my own solution(with proven strategies) to solve sudoku puzzles effectively(not necessarily efficiently).
