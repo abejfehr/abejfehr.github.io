@@ -22,7 +22,7 @@ Open up Report Studio and let's choose the **GO Sales (query)** package. We'll a
 
 Go ahead and select the first Combination Chart in the list with the defaults.
 
-![Combination Chart with default settings](../../../../images/2014-09-20/1.png "Combination Chart with default settings")
+![Combination Chart with default settings][cognos-combination-chart-with-default-settings]
 
 Right off the bat we can delete the bar series from the chart. For this example we'll only need the line series.
 
@@ -33,7 +33,7 @@ We'll be using the following Data Items from the Sales (query) namespace:
 
 After dragging in the above data items, your chart should look like the one in the image below.
 
-![Chart with the data items](../../../../images/2014-09-20/2.png "Chart with the data items")
+![Chart with the data items][cognos-chart-with-data-items]
 
 Now we've created a simple chart that runs. Only the series and the x-axis are required to graph relationships in Cognos.
 
@@ -46,11 +46,11 @@ To solve problem one, we'll create a filter for our data. Open up the **Query Ex
 
 From the **Toolbox**, let's drag a Filter into the **Detail Filters** pane. We can make the filter so it only shows dates from near our (fictional) product's release date:
 
-![Date filter](../../../../images/2014-09-20/3.png "Date filter")
+![Date filter][cognos-date-filter]
 
 Against from the **Toolbox**, drag in a new data item. Let's call the data item *Release Date*, and give it the following expression:
 
-![Release date data item](../../../../images/2014-09-20/4.png "Release date data item")
+![Release date data item][release-date-data-item]
 
 ## Adding the marker
 
@@ -59,14 +59,14 @@ The last thing we need is another data item(besides [Release Date]) to help us p
 We'll name it *Release Date Marker* and it'll be used to position the marker relative to [Release Date] and [Revenue]. Give it the following expression:
 
     if([Date]=[Release Date]) then ([Revenue]) else (null)
-<br />
+
 All this does is try to return a value for each date. What value is returned? If the date is the release date, it returns the [Revenue] for that day. Otherwise, it returns *null*.
 
 Let's add a new marker by selecting the chart and clicking the ellipses next to the *Markers* property in the **Properties** pane.
 
 Add the new marker and make both the Category Position and the Numeric Position refer to the *Release Date Marker* Data Item that we created earlier, based on a **Layout Calculation**.
 
-![Marker properties](../../../../images/2014-09-20/5.png "Marker properties")
+![Marker properties][cognos-chart-marker-properties]
 
 Here you can be as creative as you want with the styling options. I'll choose to make my marker an orange star with 5 points.
 
@@ -74,18 +74,27 @@ Are we finished? Not quite...
 
 If we were to run the report now, it would fail. We get the CRX-API-0005 error because we're not allowed to use [Release Date Marker] in the Layout Calculation if it's not in the chart.
 
-![Cognos error](../../../../images/2014-09-20/6.png "Cognos error")
+![Cognos error][crx-api-0005-cognos-error]
 
 In order to circumvent this silly error, we'll have to reference [Release Date Marker] somewhere in the chart. We could add it to the chart as a series, but that would lead to having an extra entry in the legend of the chart. Instead, let's utilize the *Properties* property.
 
 Select the <#Date#> category item in the chart and click the ellipses next to the Properties property. This brings up a small window with a list of the data items in the query. Let's select *Release Date Marker* and click OK.
 
-![Properties box](../../../../images/2014-09-20/7.png "Properties box")
+![Properties box][cognos-properties-box]
 
 Click on run once again, and this time we're greeted with a beautiful, *marked* chart!
 
-![Resulting chart](../../../../images/2014-09-20/8.png "Resulting chart")
+![Resulting chart][cognos-chart-final]
 
 ## Conclusion
 
 Markers are a great way to draw attention to certain points of data on a chart. The documentation states that they can be used to mark dates, but doesn't provide clear instructions on how to do that. By creating a data item that only returns a value on a particular date, we can map the marker's location to that data item and display our marker at a custom location.
+
+[cognos-combination-chart-with-default-settings]: ../../../../images/2014-09-20/cognos-combination-chart-with-default-settings.png "Combination Chart with default settings"
+[cognos-chart-with-data-items]: ../../../../images/2014-09-20/cognos-chart-with-data-items.png "Chart with the data items"
+[cognos-date-filter]: ../../../../images/2014-09-20/cognos-date-filter.png "Date filter"
+[release-date-data-item]: ../../../../images/2014-09-20/release-date-data-item.png "Release date data item"
+[cognos-chart-marker-properties]: ../../../../images/2014-09-20/cognos-chart-marker-properties.png "Marker properties"
+[crx-api-0005-cognos-error]: ../../../../images/2014-09-20/crx-api-0005-cognos-error.png "Cognos error"
+[cognos-properties-box]: ../../../../images/2014-09-20/cognos-properties-box.png "Properties box"
+[cognos-chart-final]: ../../../../images/2014-09-20/cognos-chart-final.png "Resulting chart"
