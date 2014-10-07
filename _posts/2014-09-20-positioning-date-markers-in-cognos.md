@@ -14,9 +14,9 @@ Note that in the documentation it says the following:
 
 It turns out that doing so is slightly more challenging than it should be, so this article has been designed to provide insight on how you can position markers to denote a specific date on a chart.
 
-## Preparing the report
-
 {% include post_ad.html %}
+
+## Preparing the report
 
 Chart markers can only work in combination, progressive column, [Pareto](https://en.wikipedia.org/wiki/Pareto_chart), scatter, and bubble charts. In our example, we'll create a report that has a *combination chart*, using the [samples provided by IBM](https://www-01.ibm.com/support/knowledgecenter/SSEP7J_10.2.1/com.ibm.swg.ba.cognos.ig_smples.10.2.1.doc/c_cognos_samples_overview.html?lang=en).
 
