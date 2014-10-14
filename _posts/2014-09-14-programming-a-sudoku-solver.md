@@ -6,35 +6,33 @@ categories: posts
 description:
 ---
 
-Creating a sudoku solver is something that's not uncommon as a Computer Science exercise. After years of putting off the idea, I finally decided to make my own solution to solve sudoku puzzles in [Python](https://www.python.org/).
+Creating a sudoku solver is something that's not uncommon as a Computer Science exercise. After putting off the project for much to long, I finally decided to make my own solution to solve sudoku puzzles in [Python](https://www.python.org/).
 
-I chose Python since its [list slicing](https://docs.python.org/3.0/library/functions.html#slice) and [list comprehension](https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions) made it a very suitable language for grabbing certain elements. The simple syntax made it even easier to program the solver in an iterative manner.
+I chose Python since its [list slicing](https://docs.python.org/3.0/library/functions.html#slice) and [list comprehension](https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions) made it a very suitable language for grabbing certain elements from the sudoku puzzle array. Python's simple syntax made it even easier to program the solver in an iterative manner.
 
 ## The strategy
 
-The most common way to solve sudoku puzzles in code is by keeping a list of possible candidates for each cell. A very simple puzzle could be solved by only looking at trivial cases where there is only one candidate per cell.
+The most common way to solve sudoku puzzles in code is by keeping a list of possible candidates for each cell. A very simple puzzle could be solved by only recursively looking at trivial cases where there is only one candidate per cell. Once we find a singleton cell, we can clear that value from it's neighbours and check if any of the neighbours are now singletons as well.
 
 ![An example of a Sudoku Candidate Puzzle][sudoku-candidate-puzzle]
 
-How does a person solve a sudoku puzzle when they look at it on paper? We look at cells which are *related* to the one we're trying to fill in order to find out which numbers are valid candidates for that cell.
-
-The neighbouring cells I'm referring to are the ones that occupy the same box, row or column as the target cell.
+How does a person solve a sudoku puzzle when they look at it on paper? We look at neighbouring cells &mdash; cells which share a row, column or box with the one we're trying to fill in order to find out which numbers are valid candidates for that cell.
 
 {% include post_ad.html %}
 
 It is very easy for the human eye to filter out the cells which are not neighbouring the target cell and only focus on neighbours, but instructing the computer to do the same can be quite difficult. Our spatial minds realize that the cells in a row or a column belong to something that resembles a line, or that the cell's box is a 3 by 3 square. Some sudoku puzzles, like the one above, are even printed with bolded lines that denote the edges of these boxes.
 
-In addition to the candidate elimination, my solution also used recursion to try multiple possible solutions once met with a decision. In the case where no cells in the candidate puzzle have only one candidate, a decision must be made. In the real world, the ideal path to take would be to photocopy the sudoku puzzle once for each candidate in the cell, and on each individual photocopy you would carry on as if only having chosen one of the candidates until that copy of the puzzle is solved or invalid.
+In addition to the candidate elimination, my solution also uses recursion to try multiple possible solutions when faced with a decision. This is a scenario where no cells in the candidate puzzle have only one candidate. In the real world, the ideal solution is to photocopy the sudoku puzzle once for each candidate in the cell, and on each individual photocopy carry on as if only having chosen one of the candidates until that copy of the puzzle is solved or proven to be unsolvable.
 
 ## Organizing the puzzle
 
-It seems not uncommon to represent a sudoku puzzle as a string of 81 characters where the unknown values are shown as full-stops(periods). I decided that I would take that as an input value for the solve and store the puzzle as an array of length 81 that contains lists with all the candidates for each cell.
+It's not uncommon to represent a sudoku puzzle as a string of 81 characters where the unknown values are shown as full-stops(periods). My solution takes a string as an input value for the solve and converts it to an array of lists which each contain candidates for that cell.
 
-Each of the squares would be indexed as they are in the array, with the numbers 0 to 80 as can be seen in the image below.
+Each of the squares would be indexed as they are in the array, with the numbers 0 to 80, as can be seen in the image below.
 
 ![Sudoku Cell Coordinates][sudoku-cell-coordinates]
 
-From these coordinates, we can perform get the row/column coordinates as well by doing the following:
+From these coordinates, we can get the row/column coordinates by doing the following:
 
 {% highlight python %}
 
@@ -45,13 +43,13 @@ From these coordinates, we can perform get the row/column coordinates as well by
 
 ## Selecting the neighbours
 
-Selecting the neighbouring cells to a target is comparably easy in Python compared to other programming languages because of its advanced list manipulation.
+Selecting the neighbouring cells for a target is considerably easier in Python than in most other programming languages because of its list manipulation syntax.
 
 ![Box, colum, and row neighbours of a cell in a Sudoku Puzzle][sudoku-puzzle-neighbour-cells]
 
-As you can see by the image above, the target cell in this example is cell number 52, and all of it's neighbours are highlighted in yellow.
+As you can see by the image above, the target cell in this example is cell number 52, and all of it's neighbour groups are highlighted in yellow.
 
-The whole goal behind selecting the neighbours of the target we're calculating the candidates for is so that we can get a [set](https://en.wikipedia.org/wiki/Set_(mathematics)) of them and subtract that from an array of 1-9. Anything which would remain in that array is a  potential candidate.
+The goal behind selecting the neighbours of the target is so we can end up with a  [set](https://en.wikipedia.org/wiki/Set_(mathematics)) of already known values and subtract that from an array of 1-9. Anything which would remain in that array is a *potential candidate*.
 
 ### Row neighbours
 
@@ -63,16 +61,15 @@ Getting the row neighbours is the easiest, since all their indices are consecuti
 
 {% endhighlight %}
 
-It might look confusing, but it's not too bad. Remember that the code `i/9*9`, where `i` is the target index, is just a quick and dirty way to find the starting index for the row we're currently on by taking advantage of Python 2.x's [integer division](http://mathworld.wolfram.com/IntegerDivision.html).
+It might look confusing, but remember that the code `i/9*9`, where `i` is the target index, is just a quick and dirty way to find the starting index for the row we're currently on by taking advantage of Python 2.x's [integer division](http://mathworld.wolfram.com/IntegerDivision.html).
 
 ### Column neighbours
 
-The code for columnal neighbours is slightly more interesting/complicated, but still fairly simple if you think about it.
+The code for columnal neighbours is slightly more interesting and complicated, but still fairly simple if you take a minute to really think about it.
 
 All of the candidates in a particular column have indices that are 9 apart. That means that we can take advantage of the step value in Python's slice notation to count by 9's.
 
 {% highlight python %}
-
 
     return map(int, [x for x in p[i%9::9] if x is not "."])
 
@@ -80,9 +77,9 @@ All of the candidates in a particular column have indices that are 9 apart. That
 
 ### Box neighbours
 
-Getting the set of known values that are inside the box of the target is by far the hardest calculation we'll need to do.
+Getting the set of known values that are inside the box of the target is the hardest calculation we'll need to do.
 
-Basically, it involves getting the starting index of the first cell in the box, and then we can just get the rest of the cells easily by combining 3 small groups.
+Basically, it involves getting the starting index of the first cell in the box. From there we can get the rest of the cells easily by combining 3 smaller groups.
 
 {% highlight python %}
 
@@ -91,23 +88,23 @@ Basically, it involves getting the starting index of the first cell in the box, 
 
 {% endhighlight %}
 
-Since each cell containing exactly one candidate is a *trivial solution*, we can use these methods of traversing the neighbouring cells of a target to clear out all the cells where the singleton candidate is present.
+Lastly, since each cell containing exactly one candidate is a *trivial solution*, we can use these methods of traversing the neighbouring cells of a target to clear out all the cells where the singleton candidate is present. In my solution, I've created a function that does this called `clear_candidates(i, q)`. The code for that function isn't posted, but rather left as an exercise to the reader.
 
 ## Photocopying puzzles
 
-When faced with a decision(no cells had fewer than 2 candidates) I decided that the photocopying solution seemed like a very good idea.
+When faced with a decision(no cells have fewer than 2 candidates), photocopying the puzzle to try all the potential solutions is a reasonable option.
 
-Copying an array in Python by default doesn't perform a [deep copy](http://stackoverflow.com/questions/184710/what-is-the-difference-between-a-deep-copy-and-a-shallow-copy), but [this functionality can be found in the copy module](https://docs.python.org/2/library/copy.html) so it can be easily incorportated in a solution. While photocopying, I also need to select the index of which candidate, say `n`, I need to use in the copy.
+Copying an array in Python by default doesn't perform a [deep copy](http://stackoverflow.com/questions/184710/what-is-the-difference-between-a-deep-copy-and-a-shallow-copy), but this functionality can be found in the [copy module](https://docs.python.org/2/library/copy.html), and is easily incorportated in our solution. While photocopying, we also need to select the index of which candidate, `n`, to be used in the copy.
 
 {% highlight python %}
 
     import copy
 
     def photocopy_puzzle_with(n, i, q):
-	    x = copy.deepcopy(q)
-	    x[i] = [x[i][n]]
-	    clear_candidates(i, x)
-	    return x
+      x = copy.deepcopy(q)
+      x[i] = [x[i][n]]
+      clear_candidates(i, x)
+      return x
 
 {% endhighlight %}
 
@@ -124,15 +121,15 @@ Now we just need to do exactly what we've been talking about and solve our sudok
     def solve(q):
       #if invalid, don't even bother
       if not valid(q):
-      	return False
+        return False
 
       #if complete, return the result
       if solved(q): return q
 
       #solve the trivial cases
       for i in range(81):
-      	if len(q[i]) is 1:
-      		clear_candidates(i, q)
+        if len(q[i]) is 1:
+          clear_candidates(i, q)
 
       #the minimum number of decisions to make
       h = 2
@@ -141,20 +138,20 @@ Now we just need to do exactly what we've been talking about and solve our sudok
       while(not solved(q) and h < 8):
         for i in range(81):
           #check for h number of candidates(decisions)
-      		if len(q[i]) is h:
+          if len(q[i]) is h:
             #for every decision...
-      			for j in range(h):
+            for j in range(h):
               #...make a copy and try solving
-      				nq = photocopy_puzzle_with(j, i, q)
-      				result = solve(nq)
-      				if result:
-      					return result
+              nq = photocopy_puzzle_with(j, i, q)
+              result = solve(nq)
+              if result:
+                return result
 
             #none of the decisions were successful at this point, stop here
-      			return False
+            return False
 
         #if there are no squares with h decisions, we need to make h+1 decisions
-      	h += 1
+        h += 1
 
       if solved(q): return q
       return False
@@ -189,7 +186,7 @@ At some point in the future I might separate implement some of these behaviours 
 
 ## `is` and `is not`
 
-As a side note before anyone yells at me, I've used `is` and `is not` operators for all of the equality checking in my code for efficiency purposes.
+As a side note, I've used `is` and `is not` operators for all of the equality checking in my code for efficiency purposes.
 
 This only works because all of the values which I'm checking fall in the range of `-5` and `256`, which are stored as references so they're comparable.
 
