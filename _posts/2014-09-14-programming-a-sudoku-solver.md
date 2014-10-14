@@ -26,8 +26,6 @@ It is very easy for the human eye to filter out the cells which are not neighbou
 
 In addition to the candidate elimination, my solution also used recursion to try multiple possible solutions once met with a decision. In the case where no cells in the candidate puzzle have only one candidate, a decision must be made. In the real world, the ideal path to take would be to photocopy the sudoku puzzle once for each candidate in the cell, and on each individual photocopy you would carry on as if only having chosen one of the candidates until that copy of the puzzle is solved or invalid.
 
-{% include post_ad.html %}
-
 ## Organizing the puzzle
 
 It seems not uncommon to represent a sudoku puzzle as a string of 81 characters where the unknown values are shown as full-stops(periods). I decided that I would take that as an input value for the solve and store the puzzle as an array of length 81 that contains lists with all the candidates for each cell.
