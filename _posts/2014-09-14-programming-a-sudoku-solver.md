@@ -20,6 +20,8 @@ How does a person solve a sudoku puzzle when they look at it on paper? We look a
 
 The neighbouring cells I'm referring to are the ones that occupy the same box, row or column as the target cell.
 
+{% include post_ad.html %}
+
 It is very easy for the human eye to filter out the cells which are not neighbouring the target cell and only focus on neighbours, but instructing the computer to do the same can be quite difficult. Our spatial minds realize that the cells in a row or a column belong to something that resembles a line, or that the cell's box is a 3 by 3 square. Some sudoku puzzles, like the one above, are even printed with bolded lines that denote the edges of these boxes.
 
 In addition to the candidate elimination, my solution also used recursion to try multiple possible solutions once met with a decision. In the case where no cells in the candidate puzzle have only one candidate, a decision must be made. In the real world, the ideal path to take would be to photocopy the sudoku puzzle once for each candidate in the cell, and on each individual photocopy you would carry on as if only having chosen one of the candidates until that copy of the puzzle is solved or invalid.
