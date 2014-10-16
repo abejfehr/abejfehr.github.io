@@ -35,10 +35,8 @@ Each of the squares would be indexed as they are in the array, with the numbers 
 From these coordinates, we can get the row/column coordinates by doing the following:
 
 {% highlight python %}
-
-    row = i / 9
-    col = i % 9
-
+row = i / 9
+col = i % 9
 {% endhighlight %}
 
 ## Selecting the neighbours
@@ -70,9 +68,7 @@ The code for columnal neighbours is slightly more interesting and complicated, b
 All of the candidates in a particular column have indices that are 9 apart. That means that we can take advantage of the step value in Python's slice notation to count by 9's.
 
 {% highlight python %}
-
-    return map(int, [x for x in p[i%9::9] if x is not "."])
-
+return map(int, [x for x in p[i%9::9] if x is not "."])
 {% endhighlight %}
 
 ### Box neighbours
@@ -82,10 +78,8 @@ Getting the set of known values that are inside the box of the target is the har
 Basically, it involves getting the starting index of the first cell in the box. From there we can get the rest of the cells easily by combining 3 smaller groups.
 
 {% highlight python %}
-
-    m = 9 * (i / 9 / 3 * 3) + (i % 9 / 3 * 3)
-    return map(int, [x for x in p[m:m+3] + p[m+9:m+12] + p[m+18:m+21] if x is not "."])
-
+m = 9 * (i / 9 / 3 * 3) + (i % 9 / 3 * 3)
+return map(int, [x for x in p[m:m+3] + p[m+9:m+12] + p[m+18:m+21] if x is not "."])
 {% endhighlight %}
 
 Lastly, since each cell containing exactly one candidate is a *trivial solution*, we can use these methods of traversing the neighbouring cells of a target to clear out all the cells where the singleton candidate is present. In my solution, I've created a function that does this called `clear_candidates(i, q)`. The code for that function isn't posted, but rather left as an exercise to the reader.
@@ -98,14 +92,12 @@ Copying an array in Python by default doesn't perform a [deep copy](http://stack
 
 {% highlight python %}
 
-    import copy
-
-    def photocopy_puzzle_with(n, i, q):
-      x = copy.deepcopy(q)
-      x[i] = [x[i][n]]
-      clear_candidates(i, x)
-      return x
-
+import copy
+def photocopy_puzzle_with(n, i, q):
+  x = copy.deepcopy(q)
+  x[i] = [x[i][n]]
+  clear_candidates(i, x)
+  return x
 {% endhighlight %}
 
 So in the above code, I can pass list `q` and receive a new list where the `i`th cell uses index `n`.
@@ -117,45 +109,43 @@ Of course, photocopying the puzzle doesn't accomplish anything, I need to decide
 Now we just need to do exactly what we've been talking about and solve our sudoku puzzle! Though I haven't provided the code for all of the auxilliary functions necessary, I've described the general idea behind the process, and that should be enough to guide you in the right direction.
 
 {% highlight python %}
+def solve(q):
+  #if invalid, don't even bother
+  if not valid(q):
+    return False
 
-    def solve(q):
-      #if invalid, don't even bother
-      if not valid(q):
+  #if complete, return the result
+  if solved(q): return q
+
+  #solve the trivial cases
+  for i in range(81):
+    if len(q[i]) is 1:
+      clear_candidates(i, q)
+
+  #the minimum number of decisions to make
+  h = 2
+
+  #do until the puzzle is solved
+  while(not solved(q) and h < 8):
+    for i in range(81):
+      #check for h number of candidates(decisions)
+      if len(q[i]) is h:
+        #for every decision...
+        for j in range(h):
+          #...make a copy and try solving
+          nq = photocopy_puzzle_with(j, i, q)
+          result = solve(nq)
+          if result:
+            return result
+
+        #none of the decisions were successful at this point, stop here
         return False
 
-      #if complete, return the result
-      if solved(q): return q
+    #if there are no squares with h decisions, we need to make h+1 decisions
+    h += 1
 
-      #solve the trivial cases
-      for i in range(81):
-        if len(q[i]) is 1:
-          clear_candidates(i, q)
-
-      #the minimum number of decisions to make
-      h = 2
-
-      #do until the puzzle is solved
-      while(not solved(q) and h < 8):
-        for i in range(81):
-          #check for h number of candidates(decisions)
-          if len(q[i]) is h:
-            #for every decision...
-            for j in range(h):
-              #...make a copy and try solving
-              nq = photocopy_puzzle_with(j, i, q)
-              result = solve(nq)
-              if result:
-                return result
-
-            #none of the decisions were successful at this point, stop here
-            return False
-
-        #if there are no squares with h decisions, we need to make h+1 decisions
-        h += 1
-
-      if solved(q): return q
-      return False
-
+  if solved(q): return q
+  return False
 {% endhighlight %}
 
 The above code may seem confusing, but after reading the detailed comments for each important action you'll begin to understand the process that's happening.
@@ -166,7 +156,7 @@ Next we go through all of the cells from 0 to 80, clearing the neighbourhood can
 
 Finally, when there are no more trivial cases, we go through the puzzle's cells that have 2 or more candidates and make "photocopies" of the puzzle with each candidate as a test, returning the solution of that recursive call if it wasn't a failure.
 
-Cells that have 2 decisions are tried first, then the decision counter(`h`) is incremented until 8 is reached. At this point it's not even a reasonable sudoku puzzle since it's fairly unlikely that it could be solvable without the aid of a computer program.
+Cells that have 2 decisions are tried first, then the decision counter,`h`, is incremented until 8 is reached. At this point it's not even a reasonable sudoku puzzle since it's fairly unlikely that it could be solvable without the aid of a computer program.
 
 ![Completed Sudoku Puzzle][completed-sudoku-puzzle]
 
