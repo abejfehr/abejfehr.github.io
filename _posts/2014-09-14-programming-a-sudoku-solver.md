@@ -184,6 +184,8 @@ This only works because all of the values which I'm checking fall in the range o
 
 Creating a sudoku solver is a challenging project that can exercise your ability to think, and hopefully, allow you to become more intimate with your programming language of choice. My choice to use Python was strategic because of the list manipulation features included, and combined with following proven methods of solving sudoku puzzles resulted in a reasonably effective, although not necessarily efficient, solution.
 
+Feel free to view the full code for the solver [on github](https://github.com/abejfehr/soruba/tree/master).
+
 [sudoku-candidate-puzzle]: ../../../../images/2014-10-14/sudoku-candidate-puzzle.png "Sudoku Candidate Puzzle"
 [sudoku-puzzle-neighbour-cells]: ../../../../images/2014-10-14/sudoku-puzzle-neighbour-cells.png "Box, colum, and row neighbours of a cell in a Sudoku Puzzle"
 [sudoku-cell-coordinates]: ../../../../images/2014-10-14/sudoku-cell-coordinates.png "Sudoku Cell Coordinates"
