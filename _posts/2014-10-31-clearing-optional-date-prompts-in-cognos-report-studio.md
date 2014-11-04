@@ -30,7 +30,7 @@ r(function() {
     var p = aPromptControls[i];
 
     // Check if it's optional and clear if it is
-    if(!p.isRequired()) {
+    if(!p.isRequired() && document.getElementById('txtDate'+p._id_)) {
       document.getElementById('txtDate'+p._id_).value='';
     }
   }
