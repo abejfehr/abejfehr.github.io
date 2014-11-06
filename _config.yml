@@ -2,3 +2,5 @@ name: Flex
 markdown: redcarpet
 highlighter: pygments
 encoding: utf-8
+gems:
+  - jekyll-redirect-from
