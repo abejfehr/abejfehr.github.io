@@ -12,7 +12,7 @@ In some cases it may be necessary to have a date prompt in your report which is 
 
 The [Clear Prompt Selections](https://www-01.ibm.com/support/knowledgecenter/SSEP7J_10.2.1/com.ibm.swg.ba.cognos.ug_cr_rptstd.10.2.1.doc/c_rs_smples_prompt_api.html?lang=en) Prompt API sample doesn't accomplish this. I'd like to provide a JavaScript way, with some use of the magical prompt API and some [extra help](http://dustindiaz.com/smallest-domready-ever), to clear the value for a date prompt.
 
-# The code
+## The code
 
 {% highlight javascript %}
 // Executed when the DOM is ready
