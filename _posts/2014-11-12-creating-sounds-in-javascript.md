@@ -46,9 +46,9 @@ Unfortunately the equation given calculated the frequencies for both black *and*
 
 ![Logarithmic scale of tone frequencies][scale-of-tone-frequencies]
 
-At first I tried to graph the frequencies of the white notes only and calculate the formula for their line on a graph. The picture above is an actual picture of a graph I created when trying to crack the magical code of pitch.
+At first I tried to graph the frequencies of the white notes only and calculate the formula for their line on a graph. The picture above is an actual picture of one of the graphs I created while trying to crack the magical formula for a scale.
 
-When it became evident that there was no way to ignore these numbers, I gave up and decided to create an array in code that contained a list of the frequencies that would be used in the game, which ended up being an exceptional solution.
+When it became evident that there was no way to ignore the sharps and flats, I gave up and decided to create an array in code that contained a list of the frequencies that would be used in the game, which ended up being an exceptional solution.
 
 ## Fading out
 
