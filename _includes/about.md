@@ -1,9 +1,3 @@
----
-layout: page
-title: About This Site
-description: Programming tips, tricks, and the ramblings of a confused Computer Science student.
----
-
 Hi.
 
 I'm a 22-year old [computer science](https://en.wikipedia.org/wiki/Computer_science) [student](http://www.carleton.ca/) who likes to program and work out in his spare time.
