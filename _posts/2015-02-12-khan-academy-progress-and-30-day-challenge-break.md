@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Khan Academy Progress and a 30 Day Challenge break
-date:   2014-02-12 12:00:00
+date:   2015-02-12 12:00:00
 categories: posts
 description: Update on my Khan Academy 30 Day Challenge from January
 ---
