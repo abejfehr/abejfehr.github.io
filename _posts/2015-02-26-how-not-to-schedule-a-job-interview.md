@@ -21,9 +21,9 @@ I replied, saying that I'd be available to interview with them on Monday at 7pm 
 
 Ecstatic and nervous, I prepared during the weekend reading excerpts from Cracking the Coding Interview(wonderful book by the way) and rehearsing answers.
 
-When Monday came I had to go to school in the morning, but at 12:30pm EST I went to the employment office and requested a quiet room where I could do the job interview in peace. They agreed, so they led me to a small office where I sat and waited. I couldn't get wifi from the office where I was as the room was in an awkward corner of the building, so I just sat patiently.
+When Monday came I had to go to school in the morning, but at 12:30pm EST I went to the employment office and requested a quiet room where I could do the job interview in peace. They agreed, and led me to a small office where I sat and waited. I couldn't get wifi from the office where I was as the room was in an awkward corner of the building, so I just sat patiently.
 
-When 1 o'clock rolled around my nervousness peaked. I watched as minutes ticked by on the clock; 1:02, 1:03, 1:04; minutes later, I started wondering if I had missed something. I replied again to the email that had sent me the original request and said "I'm waiting for your call", but no call ever came.
+When 1 o'clock rolled around my nervousness peaked. I watched as minutes ticked by on the clock; 1:02, 1:03, 1:04; minutes later I started wondering if I had missed something. I replied again to the email that had sent me the original request and said "I'm waiting for your call", but no call ever came.
 
 At around 1:30pm I left the office, feeling much less nervous than before, but now feeling upset. Surely there must've been some mistake.
 
