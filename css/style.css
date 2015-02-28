@@ -1294,3 +1294,9 @@
 		text-decoration:none;
 		border-bottom:0;
 	}
+
+
+/* Customization here for the blog posts */
+.post img {
+	max-width:100%;
+}
