@@ -1262,8 +1262,6 @@
 		overflow: hidden;
 	}
 	div.posts-list-inner-container {
-		position: absolute;
-		left: 0;
 		height:100%;
 		overflow-x: hidden;
 		overflow-y: scroll;
