@@ -1,7 +1,81 @@
----
-layout: default
-title: Abe Fehr
-description: Programming tips, tricks, and the ramblings of a confused Computer Science student.
----
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Abe Fehr</title>
+    <meta charset="UTF-8">
+    <link href="http://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <style>
 
-{% include about.html %}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eee;
+}
+
+#container {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#container h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 25vh;
+  padding-top: 30vh;
+  padding-bottom: 10vh;
+}
+
+#container p {
+  font-size: 3vh;
+  margin: 3vh;
+  color: #777;
+}
+
+#container a {
+  color: #444;
+  text-decoration: none;
+}
+
+#container a:hover {
+  border-bottom: 1px #444 dotted;
+}
+
+hr.fancy {
+  width: 60vw;
+  padding: 0;
+  border: none;
+  border-top: medium double #777;
+  color: #777;
+  text-align: center;
+  margin-bottom: 6vh;
+}
+hr.fancy:after {
+  font-weight: 100;
+  content: "§";
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background-color: #eee;
+}
+
+.i {
+  font-style: italic;
+}
+
+    </style>
+    <div id="container">
+      <h1>Abe Fehr</h1>
+      <hr class="fancy">
+      <p>This page is <span class="i">under construction</span>.</p>
+      <p>Come back in a few weeks to see something beautiful!</p>
+      <p>In the meantime, you can still <a href="mailto:abe.fehr@gmail.com" title="Click to send me an email!">email me</a>.</p>
+    </div>
+  </body>
+</html>
