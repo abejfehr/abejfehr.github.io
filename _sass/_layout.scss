@@ -1,0 +1,31 @@
+.main-title {
+  font-size: 64pt;
+  line-height: 100%;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+.links {
+  i {
+    font-size: 24pt;
+    margin: 3px;
+  }
+  a {
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+}
+
+@include media-query($on-laptop) {
+  main {
+    display: block;
+    overflow-y: scroll;
+  }
+  section {
+    width: auto;
+  }
+}
+
+@include media-query($on-palm) {
+  /* Just in case I want to put stuff here */
+}
