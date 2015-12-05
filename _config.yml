@@ -11,7 +11,7 @@ title: Abe Fehr
 email: abe.fehr@gmail.com
 description: I'm a student of <a href="https://en.wikipedia.org/wiki/Computer_science">Computer Science</a> at <a href="https://carleton.ca">Carleton University</a> in Ottawa, Canada. I enjoy many facets of Computer Science and Mathematics including Software Engineering, Algorithms, and Computer Graphics. As part of a work-study program I've worked at <a href="http://www.ibm.com/ca-en/">IBM</a> and <a href="http://ca.blackberry.com/home.html">BlackBerry</a>, and look forward to an upcoming term at <a href="http://www.studeersnel.nl">StudeerSnel</a>.
 url: "http://abefehr.com" # the base hostname & protocol for your site
-github_username:  abejfehr
+github_username: abejfehr
 
 # Build settings
 markdown: kramdown
