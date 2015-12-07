@@ -12,7 +12,7 @@ function sketchProc(processing) {
   var ant = {};
 
   // Variables we'll need
-  var squareSize =  15;
+  var squareSize = 15;
   var columns = 0, rows = 0;
 
   // Some colours
@@ -23,7 +23,7 @@ function sketchProc(processing) {
   /**
    * Initializes the values required by the simulation
    */
-  setup = function() {
+  var setup = function() {
 
     // Stretches the canvas to the maximum possible size
     processing.size(window.innerWidth, window.innerHeight);
@@ -79,9 +79,9 @@ function sketchProc(processing) {
    * Turns the ant left
    */
   var turnLeft = function() {
-    if (ant.direction > 1){
+    if (ant.direction > 1) {
       ant.direction--;
-    } else{
+    } else {
       ant.direction = 4;
     }
   }
@@ -149,7 +149,7 @@ function sketchProc(processing) {
     processing.size(window.innerWidth, window.innerHeight);
     processing.background(bgCol);
     drawScene();
-    for(var i =  0;  i < 2;  i++){
+    for (var i =  0;  i < 2; ++i) {
       updateScene();
     }
   }
@@ -164,8 +164,16 @@ var resizeCanvas = function() {
   ctx.canvas.height = window.innerHeight;
 };
 
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas, false);
-
-// Attaches the sketchProc function to the canvas
-var processingInstance = new Processing(canvas, sketchProc);
+/**
+ * Mind-blowingly, Safari gives the incorrect value for window.innerHeight if
+ * the resize happens outside of this 0 ms delay. I'm unsure of what's causing
+ * this issue, but this is seemingly a valid workaround.
+ *
+ * The issue was only ever observed once in each brand-new tab. Refreshing
+ * caused the problem to go away.
+ */
+setTimeout(function() {
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas, false);
+  var processingInstance = new Processing(canvas, sketchProc);
+}, 0);
