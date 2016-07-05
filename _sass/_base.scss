@@ -69,6 +69,13 @@ section {
     overflow-y: scroll;
     padding-right: 50px;
 }
+* { overflow: -moz-scrollbars-none !important; }
+section::-webkit-scrollbar {
+ display: none;
+}
+.container::-webkit-scrollbar {
+ display: none;
+}
 article {
   margin: 10px;
 }

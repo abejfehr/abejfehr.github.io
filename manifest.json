@@ -1,0 +1,35 @@
+{
+    "name": "Abe Fehr",
+    "short_name": "Abe Fehr",
+    "start_url": "./index.html",
+    "lang": "en-CA",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#ffffff",
+    "theme_color": "#252525",
+    "icons": [{
+        "src": "assets/icons/36.png",
+        "sizes": "36x36",
+        "type": "image/png"
+    }, {
+        "src": "assets/icons/48.png",
+        "sizes": "48x48",
+        "type": "image/png"
+    }, {
+        "src": "assets/icons/72.png",
+        "sizes": "72x72",
+        "type": "image/png"
+    }, {
+        "src": "assets/icons/96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+    }, {
+        "src": "assets/icons/144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+    }, {
+        "src": "assets/icons/192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    }]
+}
