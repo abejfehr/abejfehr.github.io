@@ -64,8 +64,16 @@ aside {
 }
 section {
   padding: $spacing-unit;
-  overflow-y: scroll;
-  width:100%;
+  // overflow-y: scroll;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+.container {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-right: 50px;
 }
 article {
   margin: 10px;
