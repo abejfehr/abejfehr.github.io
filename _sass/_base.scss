@@ -59,11 +59,9 @@ aside {
   z-index: 0;
 }
 section {
-  padding: $spacing-unit;
-  // overflow-y: scroll;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
+    padding: $spacing-unit;
+    overflow: hidden;
+    width: 100%;
 }
 .container {
     width: 100%;
