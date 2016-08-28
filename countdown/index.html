@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Countdown</title>
+    <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+    <style>
+      * {
+        font-family: 'Rock Salt', cursive;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        background-color: lightgray;
+        margin: 0;
+      }
+
+      section {
+        font-size: 2em;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      #background-heart {
+        color: #c49dcc;
+        font-size: 30em;
+        position: absolute;
+        right: 30%;
+        top: -20%;
+        transform: rotateZ(20deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="background-heart">♥</div>
+    <section>
+      Time until I get to see you again:
+      <div id="clock"></div>
+    </section>
+    <script>
+      /**
+       * This page is only intended to be seen by my girlfriend, so the script
+       * is just written inline
+       */
+      var clock = document.getElementById("clock");
+
+      var update = function () {
+
+        // Get the difference in time
+        var current = new Date();
+        var goal = new Date(2016, 7, 27);
+        var δ = (goal.getTime() - current.getTime()) / 1000; // in seconds
+
+        // Generate a string
+        var d = Math.floor(δ / (3600 * 24));
+        var h = Math.floor((δ % (3600 * 24)) / 3600);
+        var m = Math.floor((δ % 3600) / 60);
+        var s = Math.floor((δ % 60));
+        var time = "Only " + d + " days, " + h + " hours, " + m + " minutes, and " + s +  " seconds.";
+
+        // Update the display
+        clock.textContent = time;
+
+      };
+
+      window.setInterval(update, 500);
+      update();
+
+    </script>
+  </body>
+</html>

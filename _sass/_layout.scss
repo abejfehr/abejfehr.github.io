@@ -16,6 +16,25 @@
   }
 }
 
+main {
+    animation: sexyFadeIn 2s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    transform: translateY(5%);
+}
+
+@keyframes sexyFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10%);
+    }
+    30%  { opacity: 0; }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @include media-query($on-laptop) {
   main {
     display: block;
