@@ -51,13 +51,6 @@ main {
   position: relative;
   z-index: 1;
 }
-aside {
-  bottom: 1.5vh;
-  font-size: 2vh;
-  left: 1.5vh;
-  position: absolute;
-  z-index: 0;
-}
 section {
     padding: $spacing-unit;
     overflow: hidden;
