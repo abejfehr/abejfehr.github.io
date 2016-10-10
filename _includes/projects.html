@@ -1,8 +1,8 @@
 <div class="container">
-    <h2>Github Projects</h2>
-    <article class="col-md-4" data-repo="abejfehr/circletimer"></article>
-    <article class="col-md-4" data-repo="abejfehr/concierge"></article>
-    <article class="col-md-4" data-repo="abejfehr/parity"></article>
-    <article class="col-md-4" data-repo="abejfehr/markdown-preview-katex"></article>
-    <article class="col-md-4" data-repo="abejfehr/database-normalizer"></article>
+    <h2 class="projects-title">My Projects.</h2>
+    <ul>
+    {% for project in site.posts %}
+        <li class="project-link"><a href="{{ project.link }}">{{ project.name }}</a></li>
+    {% endfor %}
+    </ul>
 </div>

@@ -13,13 +13,10 @@ $base-line-height: 1.5;
 
 $spacing-unit:     30px;
 
-$text-color:       #555;
-$background-color: #eee;
-$brand-color:      #2a7ae2;
-
-$grey-color:       #828282;
-$grey-color-light: lighten($grey-color, 40%);
-$grey-color-dark:  darken($grey-color, 25%);
+$text-color:       #fff;
+$background-color: #1E8BC3;
+$brand-color:      #ddd;
+$highlight-color:  #FFC11B;
 
 // Width of the content area
 $content-width:    800px;
@@ -39,6 +36,29 @@ $on-laptop:        868px;
         @content;
     }
 }
+
+body ::-webkit-selection, [contenteditable]::-webkit-selection {
+	background: $highlight-color;
+}
+
+body ::-moz-selection, [contenteditable]::-moz-selection {
+	background: $highlight-color;
+}
+
+body ::selection, [contenteditable]::selection {
+	background: $highlight-color;
+}
+
+/* Aesthetics */
+input, [contenteditable] {
+  border:1px solid black;
+  display:inline-block;
+  width: 150px;
+  height: 20px;
+  line-height: 20px;
+  padding: 3px;
+}
+
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import "base", "layout";

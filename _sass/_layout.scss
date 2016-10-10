@@ -3,16 +3,28 @@
   line-height: 100%;
   margin-top: 40px;
   margin-bottom: 50px;
+  margin-left: 20px;
+}
+
+.projects-title {
+  font-size: 56px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.project-link {
+  font-size: 48px;
+  margin-top: -7px;
+  list-style-type: none;
 }
 
 .links {
   i {
-    font-size: 24pt;
+    font-size: 48pt;
     margin: 3px;
-  }
-  a {
-    margin-left: 10px;
-    vertical-align: middle;
   }
 }
 
@@ -39,6 +51,7 @@ main {
   main {
     display: block;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
   section {
     width: auto;
