@@ -15,13 +15,9 @@ github_username: abejfehr
 
 # Build settings
 markdown: kramdown
-# I don't really wanna use Jekyll
+
 include:
   - .nojekyll
 exclude:
   - "Rakefile"
-  - "Gruntfile.coffee"
-  - "node_modules"
   - "package.json"
-  - "bower_components"
-  - "bower.json"
