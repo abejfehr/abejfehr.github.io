@@ -40,13 +40,4 @@ body ::selection, [contenteditable]::selection {
 	background: $highlight-color;
 }
 
-input, [contenteditable] {
-  border:1px solid black;
-  display:inline-block;
-  width: 150px;
-  height: 20px;
-  line-height: 20px;
-  padding: 3px;
-}
-
 @import "base", "layout";

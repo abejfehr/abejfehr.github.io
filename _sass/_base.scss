@@ -67,9 +67,6 @@ section::-webkit-scrollbar {
 .container::-webkit-scrollbar {
  display: none;
 }
-article {
-  margin: 10px;
-}
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
@@ -82,36 +79,10 @@ ul, ol, dl, figure,
 }
 
 /**
- * Images
- */
-img {
-    max-width: 100%;
-    vertical-align: middle;
-}
-
-/**
- * Figures
- */
-figure > img {
-    display: block;
-}
-
-figcaption {
-    font-size: $small-font-size;
-}
-
-/**
  * Lists
  */
 ul, ol {
     margin-left: $spacing-unit;
-}
-
-li {
-    > ul,
-    > ol {
-         margin-bottom: 0;
-    }
 }
 
 /**
@@ -143,33 +114,6 @@ a {
     }
 }
 
-/**
- * Blockquotes
- */
-blockquote {
-    // color: $grey-color;
-    // border-left: 4px solid $grey-color-light;
-    padding-left: $spacing-unit / 2;
-    font-size: 18px;
-    letter-spacing: -1px;
-    font-style: italic;
-
-    > :last-child {
-        margin-bottom: 0;
-    }
-}
-
-/**
- * Code formatting
- */
-pre,
-code {
-    font-size: 15px;
-    // border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: #eef;
-}
-
 code {
     padding: 1px 5px;
 }
@@ -182,26 +126,6 @@ pre {
         border: 0;
         padding-right: 0;
         padding-left: 0;
-    }
-}
-
-/**
- * Wrapper
- */
-.wrapper {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
-    @extend %clearfix;
-
-    @include media-query($on-laptop) {
-        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-        padding-right: $spacing-unit / 2;
-        padding-left: $spacing-unit / 2;
     }
 }
 
