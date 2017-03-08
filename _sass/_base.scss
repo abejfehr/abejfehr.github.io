@@ -52,6 +52,7 @@ main {
 section {
     padding: 0 $spacing-unit;
     overflow-y: scroll;
+    overflow-x: hidden;
     width: 100%;
 }
 .container {
@@ -60,7 +61,6 @@ section {
     overflow-y: scroll;
     padding-right: 50px;
 }
-* { overflow: -moz-scrollbars-none !important; }
 section::-webkit-scrollbar {
  display: none;
 }
