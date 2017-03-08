@@ -2,7 +2,9 @@
     <h2 class="projects-title">My Projects.</h2>
     <ul>
     {% for project in site.posts %}
-        <li class="project-link"><a href="{{ project.link }}">{{ project.name }}</a></li>
+        <li class="project-link">
+          <a href="{{ project.link }}">{{ project.name }}</a>
+        </li>
     {% endfor %}
     </ul>
 </div>
