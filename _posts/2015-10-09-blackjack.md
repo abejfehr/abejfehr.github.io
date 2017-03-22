@@ -2,6 +2,7 @@
 name: BlackJack
 technologies: CoffeeScript, NodeJS, Selenium, Cucumber
 link: http://comp4004blackjack.herokuapp.com
+historical: true
 ---
 
 I wrote this game only to write acceptance tests for it for a class about software testing. Ironically, some aspects of the game don't work, but you can definitely play a full round of BlackJack and almost all the rules are implemented.

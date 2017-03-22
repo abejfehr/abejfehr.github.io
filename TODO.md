@@ -1,7 +1,3 @@
-- make the list scroll downwards on a smaller device
-- test this using a ballsload of devices
-- fix all the CSS errors
-- scrolling doesn't work when you follow a link and then go back
 - find a visualization to show in the background
 - consider making the favicon blue instead
 - why does it get a touch bolder after it fades in

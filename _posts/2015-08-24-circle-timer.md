@@ -2,6 +2,7 @@
 name: Circle Timer
 technologies: CoffeeScript, jQuery, SVG
 link: https://github.com/abejfehr/circletimer
+historical: false
 ---
 
 I was looking for a super simple circle timer, but couldn't find one exactly like I was looking for, so I found a nice technique for how to draw one using SVG and then made a reusable jQuery plugin out of it.
