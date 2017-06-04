@@ -9,7 +9,7 @@
 # Site settings
 title: Abe Fehr
 email: abe.fehr@gmail.com
-description: I'm a student of <a href="https://en.wikipedia.org/wiki/Computer_science/">Computer Science</a> completing my final year at <a href="https://carleton.ca/">Carleton University</a> in Ottawa, Canada. I enjoy many facets of Computer Science and Mathematics including Software Engineering, Algorithms, and recently, Deep Learning. As part of a work-study program I've worked at <a href="http://www.ibm.com/ca-en/">IBM</a> and <a href="http://ca.blackberry.com/home.html">BlackBerry</a>, and <a href="https://www.studeersnel.nl/">StudeerSnel</a>.
+description: I'm a student of <a href="https://en.wikipedia.org/wiki/Computer_science/">Computer Science</a> completing my final year at <a href="https://carleton.ca/">Carleton University</a> in Ottawa, Canada. I enjoy many facets of Computer Science and Mathematics including Software Engineering, Algorithms, and recently, Deep Learning. As part of a work-study program I've worked at <a href="http://www.ibm.com/ca-en/">IBM</a> and <a href="http://ca.blackberry.com/home.html">BlackBerry</a>, and <a href="https://www.studeersnel.nl/">StudeerSnel</a>. I now work as a full-time software engineer at <a href="https://www.wealthsimple.com/">Wealthsimple</a>.
 url: "https://abefehr.com" # the base hostname & protocol for your site
 github_username: abejfehr
 
