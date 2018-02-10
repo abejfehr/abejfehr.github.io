@@ -1,49 +1,44 @@
-.main-title {
-  font-size: 64pt;
-  line-height: 100%;
-  margin-top: 40px;
-  margin-bottom: 50px;
-  margin-left: 20px;
-}
-
-.projects-title {
-  font-size: 56px;
-  margin-top: 30px;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-}
-
-.project-link {
-  font-size: 48px;
-  margin-top: -7px;
-  list-style-type: none;
-}
-
-.links {
-  i {
-    font-size: 48pt;
-    margin: 3px;
-  }
-}
-
 main {
-    animation: sexyFadeIn 0.5s;
-    animation-fill-mode: forwards;
-    opacity: 0;
-    transform: translateY(5%);
-}
-
-@keyframes sexyFadeIn {
-  0% {
-    opacity: 0.2;
-    transform: translateY(10%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  animation: sexyFadeIn 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  transform: translateY(5%);
+  section {
+    &.bio {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50%;
+      .main-title {
+        font-size: 64pt;
+        line-height: 100%;
+        margin-top: 40px;
+        margin-bottom: 50px;
+        margin-left: 20px;
+      }
+      .links {
+        i {
+          font-size: 48pt;
+          margin: 3px;
+        }
+      }
+    }
+    &.projects {
+      padding-left: 50%;
+      .projects-title {
+        font-size: 56px;
+        margin-top: 30px;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        .project-link {
+          font-size: 48px;
+          margin-top: -7px;
+          list-style-type: none;
+        }
+      }
+    }
   }
 }
 
@@ -52,15 +47,21 @@ main {
     display: block;
     overflow-y: scroll;
     overflow-x: hidden;
+    section {
+      overflow-y: visible;
+      &.bio {
+        position: relative;
+        overflow-y: visible;
+        width: 100%;
+        .links {
+          text-align: center;
+        }
+      }
+      &.projects {
+        padding-left: 0;
+        overflow-y: visible;
+        width: 100%;
+      }
+    }
   }
-  section {
-    width: auto;
-  }
-  .links {
-    text-align: center;
-  }
-}
-
-@include media-query($on-palm) {
-  /* Just in case I want to put stuff here */
 }

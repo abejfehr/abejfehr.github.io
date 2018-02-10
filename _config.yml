@@ -16,6 +16,8 @@ github_username: abejfehr
 # Build settings
 markdown: kramdown
 
+plugins:
+  - jekyll-autoprefixer
 include:
   - .nojekyll
 exclude:

@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    autoprefixer-rails (6.3.7)
+      execjs
+    execjs (2.7.0)
+    jekyll-autoprefixer (1.0.1)
+      autoprefixer-rails (~> 6.3.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  jekyll-autoprefixer
+
+BUNDLED WITH
+   1.16.0
