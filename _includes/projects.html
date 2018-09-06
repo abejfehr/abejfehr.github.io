@@ -1,10 +1,12 @@
 <div class="container">
-    <h2 class="projects-title">My Projects.</h2>
-    <ul>
+  <h2 class="projects-title">My Projects.</h2>
+  <ul>
     {% for project in site.posts %}
+      {% unless project.hidden %}
         <li class="project-link" title="{{ project.content | strip_html }}">
-          <a href="{{ project.link }}">{{ project.name }}</a>
+            <a href="{{ project.link }}">{{ project.name }}</a>
         </li>
+      {% endunless %}
     {% endfor %}
-    </ul>
+  </ul>
 </div>

@@ -3,6 +3,7 @@ name: Concierge
 technologies: Ruby, Twilio
 link: https://github.com/abejfehr/concierge
 historical: true
+hidden: true
 ---
 
 Upset at the ridiculous cost of data plans in North America, I wrote concierge to provide me with Google SMS-like services using Twilio's free service.

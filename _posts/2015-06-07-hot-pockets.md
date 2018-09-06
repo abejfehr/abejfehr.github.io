@@ -3,6 +3,7 @@ name: Hot Pockets
 technologies: Java, Android
 link: https://github.com/abejfehr/HotPockets
 historical: true
+hidden: true
 ---
 
 A little bit of a ridiculous name, but this is an Android app that I programmed with my colleague at BlackBerry during a 24-hour "Hackathon" while I was interning there.
