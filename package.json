@@ -7,5 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "clamp": "^1.0.1",
+    "pick-random": "^2.0.0",
+    "save-as": "^0.1.8"
+  }
 }

@@ -1,15 +1,385 @@
-<!DOCTYPE html>
 <html>
-  {% include head.html %}
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Signika:400,700|Satisfy"
+      rel="stylesheet"
+    />
+    <title>Abe Fehr</title>
+    <style>
+      html {
+        font-family: "Signika", sans-serif;
+      }
+
+      .container {
+        max-width: 850px;
+        margin: 90px auto;
+      }
+
+      h1:hover,
+      p:hover {
+        cursor: default;
+      }
+
+      h1 {
+        opacity: 0;
+        font-size: 79px;
+        margin: 30px 20px;
+        animation-name: slideFadeIn;
+        animation-duration: 500ms;
+        animation-delay: 0.3s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+        color: #555;
+      }
+
+      p {
+        color: #666;
+        opacity: 0;
+        font-size: 24px;
+        line-height: 1.5;
+        animation-name: slideFadeIn;
+        animation-duration: 500ms;
+        animation-delay: 0.6s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+      }
+
+      *::selection {
+        color: #fff;
+        background-color: #333;
+      }
+
+      h1:hover span {
+        opacity: 1;
+        transition: all 200ms;
+      }
+
+      h1 span {
+        opacity: 0;
+        transition: all 200ms;
+        animation-duration: 1s;
+        animation-name: wave;
+        display: inline-block;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        transform-origin: 70% 59%;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      .etch-a-sketch-container {
+        min-height: 475px;
+      }
+
+      .etch-a-sketch {
+        animation-name: EtchASketch;
+        animation-duration: 800ms;
+        animation-delay: 1.2s;
+        opacity: 0;
+        animation-fill-mode: forwards;
+        width: 650px;
+        height: 475px;
+        background-color: #d61717;
+        border-radius: 30px;
+        margin: 20px auto;
+        margin-top: 60px;
+        position: relative;
+        box-shadow: 3px 3px 0 0 rgba(100, 100, 100, 0.4),
+          inset 2px 2px 0 0 rgba(255, 255, 255, 0.5),
+          inset -2px -2px 0 0 rgba(100, 100, 100, 0.4);
+      }
+
+      .etch-a-sketch::after {
+        font-family: "Satisfy", cursive;
+        content: "Abe A Sketch";
+        opacity: 0;
+        animation-name: fadeIn;
+        animation-duration: 600ms;
+        animation-delay: 3.4s;
+        animation-fill-mode: forwards;
+        bottom: 7px;
+        left: 50%;
+        font-size: 32px;
+        transform: translateX(-50%);
+        position: absolute;
+        color: rgb(88, 70, 13);
+      }
+
+      .etch-a-sketch .screen {
+        animation-name: Screen;
+        animation-duration: 900ms;
+        animation-delay: 2s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        border-radius: 10px;
+        top: 65px;
+        right: 65px;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,dbdbdb+50,e2e2e2+100 */
+        background: #fefefe; /* Old browsers */
+        background: -moz-linear-gradient(
+          -45deg,
+          #fefefe 0%,
+          #dbdbdb 50%,
+          #e2e2e2 100%
+        ); /* FF3.6-15 */
+        background: -webkit-linear-gradient(
+          -45deg,
+          #fefefe 0%,
+          #dbdbdb 50%,
+          #e2e2e2 100%
+        ); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(
+          135deg,
+          #fefefe 0%,
+          #dbdbdb 50%,
+          #e2e2e2 100%
+        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e2e2e2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        position: absolute;
+        box-shadow: inset 1px 1px 1px 0 rgba(100, 100, 100, 0.4),
+          inset -1px -1px 1px 0 rgba(100, 100, 100, 0.4),
+          2px 2px 0px 0 rgba(255, 255, 255, 0.5),
+          -2px -2px 0px 0 rgba(100, 100, 100, 0.4);
+      }
+
+      .etch-a-sketch .left.dial {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        animation-name: LeftDial;
+        animation-duration: 600ms;
+        animation-delay: 2.3s;
+        animation-fill-mode: forwards;
+      }
+
+      .etch-a-sketch .right.dial {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        animation-name: RightDial;
+        animation-duration: 600ms;
+        animation-delay: 2.6s;
+        animation-fill-mode: forwards;
+      }
+
+      .etch-a-sketch .dial {
+        width: 55px;
+        height: 55px;
+        transform: scale(0);
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 4px 4px 0 0 rgba(100, 100, 100, 0.4);
+      }
+
+      .etch-a-sketch .dial .teeth {
+        display: block;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: repeating-conic-gradient(
+          rgb(235, 235, 235) 5deg,
+          rgb(255, 255, 255) 10deg,
+          rgb(235, 235, 235) 15deg
+        );
+      }
+
+      .etch-a-sketch .dial::after {
+        content: "";
+        display: block;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        background: conic-gradient(from 90deg, #fff, #eee 70%, #fff);
+        box-shadow: inset 0 0 10px 0 rgb(235, 235, 235);
+        position: absolute;
+        top: 7.5px;
+        left: 7.5px;
+      }
+
+      .controls {
+        font-size: 13px;
+        text-align: center;
+      }
+
+      .controls .key {
+        border: 1px solid #bbb;
+        background-color: #fdfdfd;
+        box-shadow: inset 2px 2px 0 0 rgb(255, 255, 255),
+          inset -1px -1px 0 0 rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        padding: 2px;
+        font-weight: bold;
+        height: 1.2em;
+        width: 1.2em;
+        margin: 0 3px;
+      }
+
+      .Q.key::before {
+        content: "Q";
+      }
+
+      .W.key::before {
+        content: "W";
+      }
+
+      .O.key::before {
+        content: "O";
+      }
+
+      .P.key::before {
+        content: "P";
+      }
+
+      @keyframes LeftDial {
+        from {
+          transform: scale(0) rotate(-100deg);
+        }
+        to {
+          transform: scale(1) rotate(0deg);
+        }
+      }
+
+      @keyframes RightDial {
+        from {
+          transform: scale(0) rotate(50deg);
+        }
+        to {
+          transform: scale(1) rotate(0deg);
+        }
+      }
+
+      @keyframes Screen {
+        0% {
+          opacity: 0;
+        }
+        5% {
+          opacity: 1;
+          left: 510px;
+          bottom: 245px;
+          width: 10px;
+          height: 100px;
+        }
+        100% {
+          left: 65px;
+          bottom: 65px;
+          width: 520px;
+          height: 345px;
+          opacity: 1;
+        }
+      }
+
+      @keyframes EtchASketch {
+        0% {
+          width: 100px;
+          height: 100px;
+          opacity: 0;
+        }
+        5% {
+          opacity: 1;
+        }
+        50% {
+          width: 650px;
+          height: 100px;
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes wave {
+        from {
+          transform: rotate(-5deg);
+        }
+        to {
+          transform: rotate(20deg);
+        }
+      }
+
+      @keyframes slideFadeIn {
+        0% {
+          opacity: 0;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: none;
+          opacity: 1;
+        }
+      }
+
+      .shake {
+        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        /* backface-visibility: hidden; */
+        /* perspective: 1000px; */
+      }
+
+      @keyframes shake {
+        10%,
+        90% {
+          transform: translate(-1px);
+        }
+
+        20%,
+        80% {
+          transform: translate(2px);
+        }
+
+        30%,
+        50%,
+        70% {
+          transform: translate(-4px);
+        }
+
+        40%,
+        60% {
+          transform: translate(4px);
+        }
+      }
+    </style>
+  </head>
   <body>
-    <main>
-      <section class="bio">
-        {% include header.html %}
-      </section>
-      <section class="projects">
-        {% include projects.html %}
-      </section>
-    </main>
-    {% include scripts.html %}
+    <div class="container">
+      <h1>Abe Fehr <span>👋🏻</span></h1>
+      <p>
+        I'm a <strong>programmer</strong>, but I like making things that look
+        nice.
+      </p>
+      <div>
+        <div class="etch-a-sketch-container">
+          <div class="etch-a-sketch">
+            <canvas height="345" width="520" class="screen"></canvas>
+            <div class="left dial">
+              <div class="teeth"></div>
+            </div>
+            <div class="right dial">
+              <div class="teeth"></div>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <span class="Q key"></span>/<span class="W key"></span> draws
+          vertically, <span class="O key"></span>/<span class="P key"></span>
+          draws horizontally, and holding space erases. Click
+          <a href="javascript:void(0)" class="download-link">here</a> to
+          download your art.
+        </div>
+      </div>
+    </div>
+    <script src="dist/main.js"></script>
   </body>
 </html>
