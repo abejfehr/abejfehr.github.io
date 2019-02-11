@@ -1,6 +1,7 @@
 import saveAs from "save-as"
 import pickRandom from "pick-random"
 import clamp from "clamp"
+import Shake from "@zouloux/shake"
 
 const canvas = document.querySelector(".screen")
 const ctx = canvas.getContext("2d")
@@ -74,6 +75,15 @@ window.addEventListener("keyup", e => {
 window.addEventListener("keydown", e => {
   keysPressed[e.key] = true
 })
+
+const myShakeEvent = new Shake({
+  threshold: 15,
+  timeout: 200,
+  handler: () => {
+    erase()
+  }
+})
+myShakeEvent.start()
 
 const MARGIN = 2
 
