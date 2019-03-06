@@ -2,6 +2,9 @@ import saveAs from "save-as"
 import pickRandom from "pick-random"
 import clamp from "clamp"
 import Shake from "@zouloux/shake"
+import MobileDetect from "mobile-detect"
+
+const mobileDetect = new MobileDetect(window.navigator.userAgent)
 
 const canvas = document.querySelector(".screen")
 const ctx = canvas.getContext("2d")
@@ -147,12 +150,12 @@ const renderStep = () => {
 
   if (horizontalSpeed !== 0) {
     x = clamp(x + horizontalSpeed, MARGIN, canvas.width - MARGIN)
-    rightRotation += horizontalSpeed
+    leftRotation += horizontalSpeed
   }
 
   if (verticalSpeed !== 0) {
     y = clamp(y + verticalSpeed, MARGIN, canvas.height - MARGIN)
-    leftRotation += verticalSpeed
+    rightRotation += verticalSpeed
   }
 
   if (keysPressed[" "]) {

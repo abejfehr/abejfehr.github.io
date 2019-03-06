@@ -198,6 +198,22 @@
         left: 7.5px;
       }
 
+      .arrows {
+        position: absolute;
+        bottom: 78px;
+        font-size: 12px;
+        color: rgb(88, 70, 13);
+      }
+
+      .vertical.arrows {
+        right: 21px;
+        transform: rotate(90deg);
+      }
+
+      .horizontal.arrows {
+        left: 21px;
+      }
+
       .controls {
         font-size: 13px;
         text-align: center;
@@ -369,9 +385,11 @@
         <div class="etch-a-sketch-container">
           <div class="etch-a-sketch">
             <canvas height="345" width="520" class="screen"></canvas>
+            <div class="horizontal arrows">◀&thinsp;▶</div>
             <div class="left dial">
               <div class="teeth"></div>
             </div>
+            <div class="vertical arrows">◀&thinsp;▶</div>
             <div class="right dial">
               <div class="teeth"></div>
             </div>
