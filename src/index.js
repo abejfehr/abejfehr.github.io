@@ -2,6 +2,7 @@ import saveAs from "save-as"
 import pickRandom from "pick-random"
 import clamp from "clamp"
 import Shake from "@zouloux/shake"
+import { Draggable } from "@shopify/draggable"
 import MobileDetect from "mobile-detect"
 
 const mobileDetect = new MobileDetect(window.navigator.userAgent)
@@ -18,8 +19,10 @@ saveCtx.fillStyle = "white"
 saveCtx.fillRect(0, 0, canvas.width, canvas.height)
 
 // Save DOM element handles
-const leftDial = document.querySelector(".left.dial .teeth")
-const rightDial = document.querySelector(".right.dial .teeth")
+const leftDialTeeth = document.querySelector(".left.dial .teeth")
+const rightDialTeeth = document.querySelector(".right.dial .teeth")
+const leftDial = document.querySelector(".left.dial")
+const rightDial = document.querySelector(".right.dial")
 const etchASketch = document.querySelector(".etch-a-sketch-container")
 
 let leftRotation = 0
@@ -67,6 +70,8 @@ const erase = () => {
 drawDot()
 
 const keysPressed = {}
+let dragOffsetX = 0
+let dragOffsetY = 0
 let eraseStarted = 0
 
 let verticalSpeed = 0
@@ -117,8 +122,8 @@ const decelerate = speed => {
 }
 
 const rotateDials = () => {
-  leftDial.style.transform = `rotate(${leftRotation}deg)`
-  rightDial.style.transform = `rotate(${rightRotation}deg)`
+  leftDialTeeth.style.transform = `rotate(${leftRotation}deg)`
+  rightDialTeeth.style.transform = `rotate(${rightRotation}deg)`
 }
 
 const renderStep = () => {
@@ -142,9 +147,21 @@ const renderStep = () => {
     horizontalSpeed = decelerate(horizontalSpeed)
   }
 
+  if (dragOffsetX !== 0) {
+    horizontalSpeed = dragOffsetX
+  }
+
+  if (dragOffsetY !== 0) {
+    verticalSpeed = dragOffsetY
+  }
+
   // if any key is pressed, draw the dot
   if (keysPressed.q || keysPressed.w || keysPressed.o || keysPressed.p) {
     rotateDials()
+    drawDot()
+  }
+
+  if (dragOffsetX !== 0 || dragOffsetY !== 0) {
     drawDot()
   }
 
@@ -167,6 +184,103 @@ const renderStep = () => {
 
   window.requestAnimationFrame(renderStep)
 }
+
+/////////////////////////
+
+function calcOffset(offset) {
+  return offset * 2 * 0.5
+}
+
+function translateMirror(mirror, mirrorCoords, containerRect) {
+  const x = mirrorCoords.left
+  const y = mirrorCoords.top
+
+  mirror.style.transform = `translate(${x}px, ${y}px)`
+}
+
+let leftDragRect
+let leftContainerRect
+let rightDragRect
+let rightContainerRect
+let initialMousePosition
+
+const leftDraggable = new Draggable(
+  document.querySelector(".left-dial-container"),
+  {
+    draggable: ".left.dial"
+  }
+)
+
+leftDraggable.on("drag:start", evt => {
+  initialMousePosition = {
+    x: evt.sensorEvent.clientX,
+    y: evt.sensorEvent.clientY
+  }
+})
+
+leftDraggable.on("drag:stop", evt => {
+  dragOffsetX = 0
+})
+
+leftDraggable.on("mirror:created", evt => {
+  leftContainerRect = evt.sourceContainer.getBoundingClientRect()
+  leftDragRect = evt.source.getBoundingClientRect()
+})
+
+leftDraggable.on("mirror:move", evt => {
+  // Required to help restrict the draggable element to the container
+  evt.cancel()
+
+  const offsetX = calcOffset(evt.sensorEvent.clientX - initialMousePosition.x)
+  const mirrorCoords = {
+    top: leftDragRect.top,
+    left: leftDragRect.left + clamp(offsetX, -9, 9)
+  }
+
+  dragOffsetX = (clamp(offsetX, -9, 9) / 9) * 0.7
+
+  translateMirror(evt.mirror, mirrorCoords, leftContainerRect)
+})
+
+const rightDraggable = new Draggable(
+  document.querySelector(".right-dial-container"),
+  {
+    draggable: ".right.dial"
+  }
+)
+
+rightDraggable.on("drag:start", evt => {
+  initialMousePosition = {
+    x: evt.sensorEvent.clientX,
+    y: evt.sensorEvent.clientY
+  }
+})
+
+rightDraggable.on("drag:stop", evt => {
+  dragOffsetY = 0
+})
+
+rightDraggable.on("mirror:created", evt => {
+  rightContainerRect = evt.sourceContainer.getBoundingClientRect()
+  rightDragRect = evt.source.getBoundingClientRect()
+})
+
+rightDraggable.on("mirror:move", evt => {
+  // Required to help restrict the draggable element to the container
+  evt.cancel()
+
+  const offsetY = calcOffset(initialMousePosition.y - evt.sensorEvent.clientY)
+  const mirrorCoords = {
+    top: rightDragRect.top - clamp(offsetY, -9, 9),
+    left: rightDragRect.left
+  }
+
+  dragOffsetY = -(clamp(offsetY, -9, 9) / 9) * 0.7
+
+  translateMirror(evt.mirror, mirrorCoords, rightContainerRect)
+})
+
+/////////////////////////
 
 const adjectives = [
   "amazing",
@@ -197,7 +311,6 @@ const artwords = [
 
 document.querySelector(".download-link").addEventListener("click", () => {
   saveCanvas.toBlob(image => {
-    console.log(image)
     const filename = `${pickRandom(adjectives)[0]}-${
       pickRandom(artwords)[0]
     }.jpg`

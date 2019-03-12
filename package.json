@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@shopify/draggable": "^1.0.0-beta.8",
     "@zouloux/shake": "^1.3.0",
     "clamp": "^1.0.1",
     "is-mobile": "^2.0.0",

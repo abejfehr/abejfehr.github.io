@@ -144,30 +144,44 @@
           -2px -2px 0px 0 rgba(100, 100, 100, 0.4);
       }
 
-      .etch-a-sketch .left.dial {
+      .left-dial-container {
         position: absolute;
         left: 10px;
         bottom: 10px;
-        animation-name: LeftDial;
-        animation-duration: 600ms;
-        animation-delay: 2.3s;
-        animation-fill-mode: forwards;
       }
 
-      .etch-a-sketch .right.dial {
+      .right-dial-container {
         position: absolute;
         right: 10px;
         bottom: 10px;
-        animation-name: RightDial;
+      }
+
+      .dial:focus {
+        outline: 0;
+      }
+
+      .dial.draggable-source--is-dragging {
+        display: none;
+      }
+
+      .etch-a-sketch .left.dial {
+        /* animation-name: LeftDial;
+        animation-duration: 600ms;
+        animation-delay: 2.3s;
+        animation-fill-mode: forwards; */
+      }
+
+      .etch-a-sketch .right.dial {
+        /* animation-name: RightDial;
         animation-duration: 600ms;
         animation-delay: 2.6s;
-        animation-fill-mode: forwards;
+        animation-fill-mode: forwards; */
       }
 
       .etch-a-sketch .dial {
         width: 55px;
         height: 55px;
-        transform: scale(0);
+        /* transform: scale(0); */
         background-color: white;
         border-radius: 50%;
         box-shadow: 4px 4px 0 0 rgba(100, 100, 100, 0.4);
@@ -391,12 +405,16 @@
           <div class="etch-a-sketch">
             <canvas height="345" width="520" class="screen"></canvas>
             <div class="horizontal arrows">◀&thinsp;▶</div>
-            <div class="left dial">
-              <div class="teeth"></div>
+            <div class="left-dial-container">
+              <div class="left dial">
+                <div class="teeth"></div>
+              </div>
             </div>
             <div class="vertical arrows">◀&thinsp;▶</div>
-            <div class="right dial">
-              <div class="teeth"></div>
+            <div class="right-dial-container">
+              <div class="right dial">
+                <div class="teeth"></div>
+              </div>
             </div>
           </div>
         </div>
