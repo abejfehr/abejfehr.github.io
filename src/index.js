@@ -1,28 +1,31 @@
-import saveAs from "save-as"
-import pickRandom from "pick-random"
-import clamp from "clamp"
-import Shake from "@zouloux/shake"
+/* global document, window */
 import { Draggable } from "@shopify/draggable"
-import MobileDetect from "mobile-detect"
+// import MobileDetect from "mobile-detect"
+import Shake from "@zouloux/shake"
+import clamp from "clamp"
+import { saveFile } from "./FileSaver"
 
-const mobileDetect = new MobileDetect(window.navigator.userAgent)
+// const mobileDetect = new MobileDetect(window.navigator.userAgent)
 
 const canvas = document.querySelector(".screen")
 const ctx = canvas.getContext("2d")
 
 // Canvas specifically used for saving images
 const saveCanvas = document.createElement("canvas")
+
 saveCanvas.width = canvas.width
 saveCanvas.height = canvas.height
+
 const saveCtx = saveCanvas.getContext("2d")
+
 saveCtx.fillStyle = "white"
 saveCtx.fillRect(0, 0, canvas.width, canvas.height)
 
 // Save DOM element handles
 const leftDialTeeth = document.querySelector(".left.dial .teeth")
 const rightDialTeeth = document.querySelector(".right.dial .teeth")
-const leftDial = document.querySelector(".left.dial")
-const rightDial = document.querySelector(".right.dial")
+// const leftDial = document.querySelector(".left.dial")
+// const rightDial = document.querySelector(".right.dial")
 const etchASketch = document.querySelector(".etch-a-sketch-container")
 
 let leftRotation = 0
@@ -72,7 +75,6 @@ drawDot()
 const keysPressed = {}
 let dragOffsetX = 0
 let dragOffsetY = 0
-let eraseStarted = 0
 
 let verticalSpeed = 0
 let horizontalSpeed = 0
@@ -91,6 +93,7 @@ const myShakeEvent = new Shake({
     erase()
   }
 })
+
 myShakeEvent.start()
 
 const MARGIN = 2
@@ -101,6 +104,7 @@ const MAX_SPEED = 0.7
 
 const accelerate = (speed, direction) => {
   let _speed = speed
+
   if (direction > 0 && speed < 0) {
     _speed = 0
   }
@@ -185,17 +189,13 @@ const renderStep = () => {
   window.requestAnimationFrame(renderStep)
 }
 
-/////////////////////////
+const calcOffset = offset => offset * 2 * 0.5
 
-function calcOffset(offset) {
-  return offset * 2 * 0.5
-}
+const translateMirror = (mirror, mirrorCoords) => {
+  const xCoord = mirrorCoords.left
+  const yCoord = mirrorCoords.top
 
-function translateMirror(mirror, mirrorCoords, containerRect) {
-  const x = mirrorCoords.left
-  const y = mirrorCoords.top
-
-  mirror.style.transform = `translate(${x}px, ${y}px)`
+  mirror.style.transform = `translate(${xCoord}px, ${yCoord}px)`
 }
 
 let leftDragRect
@@ -218,7 +218,7 @@ leftDraggable.on("drag:start", evt => {
   }
 })
 
-leftDraggable.on("drag:stop", evt => {
+leftDraggable.on("drag:stop", () => {
   dragOffsetX = 0
 })
 
@@ -256,7 +256,7 @@ rightDraggable.on("drag:start", evt => {
   }
 })
 
-rightDraggable.on("drag:stop", evt => {
+rightDraggable.on("drag:stop", () => {
   dragOffsetY = 0
 })
 
@@ -280,42 +280,8 @@ rightDraggable.on("mirror:move", evt => {
   translateMirror(evt.mirror, mirrorCoords, rightContainerRect)
 })
 
-/////////////////////////
-
-const adjectives = [
-  "amazing",
-  "beautiful",
-  "exquisite",
-  "gorgeous",
-  "lovely",
-  "magnificent",
-  "pretty",
-  "splendid",
-  "stunning",
-  "wonderful"
-]
-
-const artwords = [
-  "artwork",
-  "composition",
-  "depiction",
-  "design",
-  "doodle",
-  "drawing",
-  "illustration",
-  "image",
-  "masterpiece",
-  "piece-of-art",
-  "sketch"
-]
-
-document.querySelector(".download-link").addEventListener("click", () => {
-  saveCanvas.toBlob(image => {
-    const filename = `${pickRandom(adjectives)[0]}-${
-      pickRandom(artwords)[0]
-    }.jpg`
-    saveAs(image, filename)
-  }, "image/jpeg")
-})
+document
+  .querySelector(".download-link")
+  .addEventListener("click", () => saveFile(saveCanvas))
 
 window.requestAnimationFrame(renderStep)
