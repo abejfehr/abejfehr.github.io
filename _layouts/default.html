@@ -12,7 +12,7 @@
       }
 
       .container {
-        max-width: 850px;
+        max-width: 650px;
         margin: 90px auto;
       }
 
@@ -89,6 +89,7 @@
         box-shadow: 3px 3px 0 0 rgba(100, 100, 100, 0.4),
           inset 2px 2px 0 0 rgba(255, 255, 255, 0.5),
           inset -2px -2px 0 0 rgba(100, 100, 100, 0.4);
+        will-change: width height opacity;
       }
 
       .etch-a-sketch::after {
@@ -136,12 +137,12 @@
           #dbdbdb 50%,
           #e2e2e2 100%
         ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e2e2e2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
         position: absolute;
         box-shadow: inset 1px 1px 1px 0 rgba(100, 100, 100, 0.4),
           inset -1px -1px 1px 0 rgba(100, 100, 100, 0.4),
           2px 2px 0px 0 rgba(255, 255, 255, 0.5),
           -2px -2px 0px 0 rgba(100, 100, 100, 0.4);
+        will-change: height width left bottom opacity;
       }
 
       .left-dial-container {
@@ -181,7 +182,6 @@
       .etch-a-sketch .dial {
         width: 55px;
         height: 55px;
-        /* transform: scale(0); */
         background-color: white;
         border-radius: 50%;
         box-shadow: 4px 4px 0 0 rgba(100, 100, 100, 0.4);
@@ -296,13 +296,13 @@
       @keyframes Screen {
         0% {
           opacity: 0;
-        }
-        5% {
-          opacity: 1;
           left: 510px;
           bottom: 245px;
           width: 10px;
           height: 100px;
+        }
+        5% {
+          opacity: 1;
         }
         100% {
           left: 65px;
@@ -397,8 +397,8 @@
     <div class="container">
       <h1>Abe Fehr <span>👋🏻</span></h1>
       <p>
-        I'm a <strong>programmer</strong>, but I like making things that look
-        nice.
+        I'm a <span style="font-weight: bold">programmer</span> who likes making
+        things that look nice.
       </p>
       <div>
         <div class="etch-a-sketch-container">

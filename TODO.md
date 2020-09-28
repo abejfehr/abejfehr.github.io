@@ -1,3 +1,0 @@
-- find a visualization to show in the background
-- consider making the favicon blue instead
-- why does it get a touch bolder after it fades in
