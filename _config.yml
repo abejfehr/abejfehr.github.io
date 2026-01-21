@@ -11,12 +11,13 @@ email: abe.fehr@gmail.com
 description: I'm a Software Engineer at <a href="https://www.wealthsimple.com/">Wealthsimple</a>. I enjoy many facets of Computer Science and Mathematics including Software Engineering, Algorithms, and recently, Deep Learning. As part of a work-study program I've worked at <a href="http://www.ibm.com/ca-en/">IBM</a> and <a href="http://ca.blackberry.com/home.html">BlackBerry</a>, and <a href="https://www.studeersnel.nl/">StudeerSnel</a>.
 url: "https://abefehr.com" # the base hostname & protocol for your site
 github_username: abejfehr
+permalink: /posts/:categories/:title
 
 # Build settings
 markdown: kramdown
 
 plugins:
-  - jekyll-autoprefixer
+  - jekyll-feed
 include:
   - .nojekyll
 exclude:

@@ -5,6 +5,6 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem 'jekyll'
-gem 'jekyll-autoprefixer'
 gem 'kramdown'
 gem 'jekyll-watch'
+gem "jekyll-feed"

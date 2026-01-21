@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title }}</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Signika:400,700|Satisfy"
+      rel="stylesheet"
+    />
+    {% include common_styles.html %}
+    <style>
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background-color: var(--black);
+      z-index: 9999;
+      transition: width 0.1s ease-out, opacity 0.3s ease-out;
+      opacity: 1;
+    }
+
+    @media screen and (min-width: 651px) {
+      #scroll-progress {
+        /* override the value set in JS */
+        opacity: 0 !important;
+      }
+    }
+
+    article {
+      margin: 0 auto;
+      max-width: 650px;
+    }
+
+    @media screen and (max-width: 655px) {
+      article {
+        margin: 0 5px;
+      }
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    .post-date {
+      color: gray;
+      font-size: 14px;
+    }
+    </style>
+    {% include analytics.html %}
+  </head>
+  <body>
+    {% include header.html %}
+    <div id="scroll-progress"></div>
+    <article>
+    <h1>{{ page.title }}</h1>
+    {% assign words = page.content | number_of_words %}
+    {% assign wpm = 150 %}
+    {% assign minutes_float = words | divided_by: wpm %}
+    {% assign minutes = minutes_float | ceil %}
+
+    <p class="post-date">
+      {{ page.date | date: "%B %d, %Y" }} | {{ minutes }} min read</p>
+    {{ content }}
+    </article>
+    <script>
+      const progressBar = document.getElementById("scroll-progress");
+
+      function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+
+        // Hides the bar if the page isn't scrollable
+        if (docHeight <= 0) {
+          progressBar.style.opacity = 0;
+          return;
+        } else {
+          progressBar.style.opacity = 1;
+        }
+
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + "%";
+      }
+
+      window.addEventListener("scroll", updateProgress);
+      window.addEventListener("resize", updateProgress);
+      window.addEventListener("load", updateProgress);
+    </script>
+  </body>
+</html>

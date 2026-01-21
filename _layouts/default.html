@@ -1,19 +1,24 @@
 <html>
   <head>
-    <meta name="viewport" content="width=900" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       href="https://fonts.googleapis.com/css?family=Signika:400,700|Satisfy"
       rel="stylesheet"
     />
     <title>Abe Fehr</title>
+    {% include common_styles.html %}
     <style>
-      html {
-        font-family: "Signika", sans-serif;
-      }
-
       .container {
         max-width: 650px;
-        margin: 90px auto;
+        margin: 50px auto;
+        font-family: 'Signika', sans-serif;
+      }
+
+      @media screen and (max-width: 655px) {
+        .container {
+          margin: 0 5px;
+        }
       }
 
       h1:hover,
@@ -24,7 +29,7 @@
       h1 {
         opacity: 0;
         font-size: 79px;
-        margin: 30px 20px;
+        margin: 24px 0;
         animation-name: slideFadeIn;
         animation-duration: 500ms;
         animation-delay: 0.3s;
@@ -73,6 +78,12 @@
         min-height: 475px;
       }
 
+      @media screen and (max-width: 655px) {
+        .etch-a-sketch-container {
+          margin: 10px;
+        }
+      }
+
       .etch-a-sketch {
         animation-name: EtchASketch;
         animation-duration: 800ms;
@@ -86,10 +97,18 @@
         margin: 20px auto;
         margin-top: 60px;
         position: relative;
-        box-shadow: 3px 3px 0 0 rgba(100, 100, 100, 0.4),
+        box-shadow:
+          3px 3px 0 0 rgba(100, 100, 100, 0.4),
           inset 2px 2px 0 0 rgba(255, 255, 255, 0.5),
           inset -2px -2px 0 0 rgba(100, 100, 100, 0.4);
         will-change: width height opacity;
+      }
+
+      @media screen and (max-width: 655px) {
+        .etch-a-sketch {
+          width: 100%;
+          aspect-ratio: 1.37;
+        }
       }
 
       .etch-a-sketch::after {
@@ -138,7 +157,8 @@
           #e2e2e2 100%
         ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         position: absolute;
-        box-shadow: inset 1px 1px 1px 0 rgba(100, 100, 100, 0.4),
+        box-shadow:
+          inset 1px 1px 1px 0 rgba(100, 100, 100, 0.4),
           inset -1px -1px 1px 0 rgba(100, 100, 100, 0.4),
           2px 2px 0px 0 rgba(255, 255, 255, 0.5),
           -2px -2px 0px 0 rgba(100, 100, 100, 0.4);
@@ -246,7 +266,8 @@
       .controls .key {
         border: 1px solid #bbb;
         background-color: #fdfdfd;
-        box-shadow: inset 2px 2px 0 0 rgb(255, 255, 255),
+        box-shadow:
+          inset 2px 2px 0 0 rgb(255, 255, 255),
           inset -1px -1px 0 0 rgba(0, 0, 0, 0.2);
         border-radius: 4px;
         position: relative;
@@ -313,6 +334,28 @@
         }
       }
 
+      @media screen and (max-width: 655px) {
+        @keyframes Screen {
+          0% {
+            opacity: 0;
+            left: calc(100% - 65px);
+            bottom: 50%;
+            width: 10px;
+            height: 100px;
+          }
+          5% {
+            opacity: 1;
+          }
+          100% {
+            left: 65px;
+            bottom: 65px;
+            width: calc(100% - 65px - 65px);
+            height: calc(100% - 65px - 65px);
+            opacity: 1;
+          }
+        }
+      }
+
       @keyframes EtchASketch {
         0% {
           width: 100px;
@@ -329,6 +372,27 @@
         }
         100% {
           opacity: 1;
+        }
+      }
+
+      @media screen and (max-width: 655px) {
+        @keyframes EtchASketch {
+          0% {
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+          }
+          5% {
+            opacity: 1;
+          }
+          50% {
+            width: 100%;
+            aspect-ratio: 1.37;
+            opacity: 1;
+          }
+          100% {
+            opacity: 1;
+          }
         }
       }
 
@@ -392,14 +456,17 @@
         }
       }
     </style>
+    {% include analytics.html %}
   </head>
   <body>
+    {% include header.html %}
     <div class="container">
       <h1>Abe Fehr <span>👋🏻</span></h1>
       <p>
         I'm a <span style="font-weight: bold">programmer</span> who likes making
         things that look nice.
       </p>
+      <p>Sometimes I <a href="/blog">write</a>, too.</p>
       <div>
         <div class="etch-a-sketch-container">
           <div class="etch-a-sketch">
@@ -428,6 +495,5 @@
       </div>
     </div>
     <script src="dist/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/abejfehr/ukraine-info-banner@latest/dist/snippet.js"></script>
   </body>
 </html>
