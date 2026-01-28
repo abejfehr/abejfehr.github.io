@@ -1,5 +1,4 @@
 /* global document, window */
-import { Draggable } from "@shopify/draggable"
 // import MobileDetect from "mobile-detect"
 import Shake from "@zouloux/shake"
 import clamp from "clamp"
@@ -31,7 +30,10 @@ const etchASketch = document.querySelector(".etch-a-sketch-container")
 let leftRotation = 0
 let rightRotation = 0
 
-// Store where we currently are
+// to decide if the mouse is moving on the left knob
+let isLeftDragging = false;
+
+// Store where the cursor currently is
 let x = 160
 let y = 150
 
@@ -168,8 +170,12 @@ const renderStep = () => {
   if (dragOffsetX !== 0 || dragOffsetY !== 0) {
     drawDot()
   }
+  // reset the dragOffset
+  dragOffsetX = 0;
+  dragOffsetY = 0;
 
   if (horizontalSpeed !== 0) {
+    console.log('x', x, horizontalSpeed, x + horizontalSpeed, MARGIN, canvas.width - MARGIN);
     x = clamp(x + horizontalSpeed, MARGIN, canvas.width - MARGIN)
     leftRotation += horizontalSpeed
   }
@@ -204,81 +210,93 @@ let rightDragRect
 let rightContainerRect
 let initialMousePosition
 
-const leftDraggable = new Draggable(
-  document.querySelector(".left-dial-container"),
-  {
-    draggable: ".left.dial"
+function angleDelta(current, previous) {
+  let delta = current - previous;
+
+  // Normalize to [-180, 180]
+  if (delta > 180) delta -= 360;
+  if (delta < -180) delta += 360;
+
+  return delta;
+}
+
+const leftKnob = document.querySelector('.left.dial');
+let leftPointerId;
+let leftLastAngle
+leftKnob.addEventListener('pointerdown', (e) => {
+  e.preventDefault();
+
+  leftPointerId = e.pointerId;
+  leftKnob.setPointerCapture(e.pointerId);
+});
+leftKnob.addEventListener('pointermove', (e) => {
+  if (e.pointerId !== leftPointerId) return;
+
+  const knobCenterX = leftKnob.getBoundingClientRect().x + leftKnob.getBoundingClientRect().width / 2;
+  const knobCenterY = leftKnob.getBoundingClientRect().y + leftKnob.getBoundingClientRect().height / 2;
+
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
+
+  let angleInDegrees = Math.atan2(mouseY - knobCenterY, mouseX - knobCenterX) * 180 / Math.PI;
+
+  if (leftLastAngle) {
+    const amountToDraw = angleDelta(angleInDegrees, leftLastAngle);
+    dragOffsetX += 0.1 * amountToDraw
   }
-)
+  leftLastAngle = angleInDegrees;
+  leftRotation = angleInDegrees;
+  rotateDials()
+});
+leftKnob.addEventListener('pointerup', releaseLeftPointer);
+leftKnob.addEventListener('pointercancel', releaseLeftPointer);
 
-leftDraggable.on("drag:start", evt => {
-  initialMousePosition = {
-    x: evt.sensorEvent.clientX,
-    y: evt.sensorEvent.clientY
+function releaseLeftPointer (e) {
+  if (e.pointerId !== leftPointerId) return;
+
+  leftKnob.releasePointerCapture(e.pointerId);
+  leftPointerId = null;
+  leftLastAngle = null;
+}
+
+const rightKnob = document.querySelector('.right.dial');
+let rightPointerId;
+let rightLastAngle
+rightKnob.addEventListener('pointerdown', (e) => {
+  e.preventDefault();
+
+  rightPointerId = e.pointerId;
+  rightKnob.setPointerCapture(e.pointerId);
+});
+rightKnob.addEventListener('pointermove', (e) => {
+  if (e.pointerId !== rightPointerId) return;
+
+  const knobCenterX = rightKnob.getBoundingClientRect().x + rightKnob.getBoundingClientRect().width / 2;
+  const knobCenterY = rightKnob.getBoundingClientRect().y + rightKnob.getBoundingClientRect().height / 2;
+
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
+
+  let angleInDegrees = Math.atan2(mouseY - knobCenterY, mouseX - knobCenterX) * 180 / Math.PI;
+
+  if (rightLastAngle) {
+    const amountToDraw = angleDelta(angleInDegrees, rightLastAngle);
+    dragOffsetY += 0.1 * amountToDraw
   }
-})
+  rightLastAngle = angleInDegrees;
+  rightRotation = angleInDegrees;
+  rotateDials()
+});
+rightKnob.addEventListener('pointerup', releaseRightPointer);
+rightKnob.addEventListener('pointercancel', releaseRightPointer);
 
-leftDraggable.on("drag:stop", () => {
-  dragOffsetX = 0
-})
+function releaseRightPointer (e) {
+  if (e.pointerId !== leftPointerId) return;
 
-leftDraggable.on("mirror:created", evt => {
-  leftContainerRect = evt.sourceContainer.getBoundingClientRect()
-  leftDragRect = evt.source.getBoundingClientRect()
-})
-
-leftDraggable.on("mirror:move", evt => {
-  // Required to help restrict the draggable element to the container
-  evt.cancel()
-
-  const offsetX = calcOffset(evt.sensorEvent.clientX - initialMousePosition.x)
-  const mirrorCoords = {
-    top: leftDragRect.top,
-    left: leftDragRect.left + clamp(offsetX, -9, 9)
-  }
-
-  dragOffsetX = (clamp(offsetX, -9, 9) / 9) * 0.7
-
-  translateMirror(evt.mirror, mirrorCoords, leftContainerRect)
-})
-
-const rightDraggable = new Draggable(
-  document.querySelector(".right-dial-container"),
-  {
-    draggable: ".right.dial"
-  }
-)
-
-rightDraggable.on("drag:start", evt => {
-  initialMousePosition = {
-    x: evt.sensorEvent.clientX,
-    y: evt.sensorEvent.clientY
-  }
-})
-
-rightDraggable.on("drag:stop", () => {
-  dragOffsetY = 0
-})
-
-rightDraggable.on("mirror:created", evt => {
-  rightContainerRect = evt.sourceContainer.getBoundingClientRect()
-  rightDragRect = evt.source.getBoundingClientRect()
-})
-
-rightDraggable.on("mirror:move", evt => {
-  // Required to help restrict the draggable element to the container
-  evt.cancel()
-
-  const offsetY = calcOffset(initialMousePosition.y - evt.sensorEvent.clientY)
-  const mirrorCoords = {
-    top: rightDragRect.top - clamp(offsetY, -9, 9),
-    left: rightDragRect.left
-  }
-
-  dragOffsetY = -(clamp(offsetY, -9, 9) / 9) * 0.7
-
-  translateMirror(evt.mirror, mirrorCoords, rightContainerRect)
-})
+  leftKnob.releasePointerCapture(e.pointerId);
+  leftPointerId = null;
+  leftLastAngle = null;
+}
 
 document
   .querySelector(".download-link")

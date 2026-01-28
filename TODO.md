@@ -2,6 +2,8 @@ nice-to-haves
 - add final picture of the project
 - resize images automatically (similar to my brother's site)
 - add lightbox effect for pictures
+- upload my code to Github
+- hide my own name in the home page nav bar
 
 inspo
 
@@ -14,13 +16,10 @@ inspo
 - https://marvinh.dev/
 interesting, but probably not what I want: https://www.aadillpickle.com/
 
-home page
-- keep the etch a sketch
-
 etch a sketch
-- add gyro-based shimmer (if I can)
-- add proper mobile knob support
 - gallery to share images
+- don't show PC directions on mobile
+- unsquish the canvas on mobile
 
 other ideas:
 - list sites I like

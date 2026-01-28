@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch"
   },
   "author": "",
   "license": "MIT",
@@ -15,6 +16,10 @@
     "is-mobile": "^2.0.0",
     "mobile-detect": "^1.4.3",
     "pick-random": "^2.0.0",
-    "save-as": "^0.1.8"
+    "save-as": "^0.1.8",
+    "webpack": "^5.104.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
   }
 }
