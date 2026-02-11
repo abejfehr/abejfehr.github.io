@@ -70,7 +70,6 @@
         animation-iteration-count: infinite;
         animation-timing-function: ease-in-out;
         transform-origin: 70% 59%;
-        -moz-user-select: none;
         user-select: none;
       }
 
@@ -136,26 +135,13 @@
         border-radius: 10px;
         top: 65px;
         right: 65px;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,dbdbdb+50,e2e2e2+100 */
-        background: #fefefe; /* Old browsers */
-        background: -moz-linear-gradient(
-          -45deg,
-          #fefefe 0%,
-          #dbdbdb 50%,
-          #e2e2e2 100%
-        ); /* FF3.6-15 */
-        background: -webkit-linear-gradient(
-          -45deg,
-          #fefefe 0%,
-          #dbdbdb 50%,
-          #e2e2e2 100%
-        ); /* Chrome10-25,Safari5.1-6 */
+        background: #fefefe; /* Fallback for old browsers */
         background: linear-gradient(
           135deg,
           #fefefe 0%,
           #dbdbdb 50%,
           #e2e2e2 100%
-        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        );
         position: absolute;
         box-shadow:
           inset 1px 1px 1px 0 rgba(100, 100, 100, 0.4),
@@ -183,20 +169,6 @@
 
       .dial.draggable-source--is-dragging {
         display: none;
-      }
-
-      .etch-a-sketch .left.dial {
-        /* animation-name: LeftDial;
-        animation-duration: 600ms;
-        animation-delay: 2.3s;
-        animation-fill-mode: forwards; */
-      }
-
-      .etch-a-sketch .right.dial {
-        /* animation-name: RightDial;
-        animation-duration: 600ms;
-        animation-delay: 2.6s;
-        animation-fill-mode: forwards; */
       }
 
       .etch-a-sketch .dial {
@@ -460,7 +432,7 @@
     {% include analytics.html %}
   </head>
   <body>
-    {% include header.html %}
+    <!--{% include header.html %}-->
     <div class="container">
       <h1>Abe Fehr <span>👋🏻</span></h1>
       <p>

@@ -1,10 +1,7 @@
 /* global document, window */
-// import MobileDetect from "mobile-detect"
 import Shake from "@zouloux/shake"
 import clamp from "clamp"
 import { saveFile } from "./FileSaver"
-
-// const mobileDetect = new MobileDetect(window.navigator.userAgent)
 
 const canvas = document.querySelector(".screen")
 const ctx = canvas.getContext("2d")
@@ -23,8 +20,6 @@ saveCtx.fillRect(0, 0, canvas.width, canvas.height)
 // Save DOM element handles
 const leftDialTeeth = document.querySelector(".left.dial .teeth")
 const rightDialTeeth = document.querySelector(".right.dial .teeth")
-// const leftDial = document.querySelector(".left.dial")
-// const rightDial = document.querySelector(".right.dial")
 const etchASketch = document.querySelector(".etch-a-sketch-container")
 
 let leftRotation = 0
@@ -34,12 +29,16 @@ let rightRotation = 0
 let isLeftDragging = false;
 
 // Store where the cursor currently is
+let pristine = true;
 let x = 160
 let y = 150
 
 const DOT_SIZE = 1.2
 
 const drawDot = () => {
+  if (pristine) {
+    pristine = false;
+  }
   // Draw ~1 pixel on the canvas
   ctx.fillStyle = `rgba(100, 100, 100, 0.89)`
   ctx.fillRect(x, y, DOT_SIZE, DOT_SIZE)
@@ -175,7 +174,7 @@ const renderStep = () => {
   dragOffsetY = 0;
 
   if (horizontalSpeed !== 0) {
-    console.log('x', x, horizontalSpeed, x + horizontalSpeed, MARGIN, canvas.width - MARGIN);
+    // console.log('x', x, horizontalSpeed, x + horizontalSpeed, MARGIN, canvas.width - MARGIN);
     x = clamp(x + horizontalSpeed, MARGIN, canvas.width - MARGIN)
     leftRotation += horizontalSpeed
   }
@@ -203,12 +202,6 @@ const translateMirror = (mirror, mirrorCoords) => {
 
   mirror.style.transform = `translate(${xCoord}px, ${yCoord}px)`
 }
-
-let leftDragRect
-let leftContainerRect
-let rightDragRect
-let rightContainerRect
-let initialMousePosition
 
 function angleDelta(current, previous) {
   let delta = current - previous;
@@ -291,11 +284,11 @@ rightKnob.addEventListener('pointerup', releaseRightPointer);
 rightKnob.addEventListener('pointercancel', releaseRightPointer);
 
 function releaseRightPointer (e) {
-  if (e.pointerId !== leftPointerId) return;
+  if (e.pointerId !== rightPointerId) return;
 
-  leftKnob.releasePointerCapture(e.pointerId);
-  leftPointerId = null;
-  leftLastAngle = null;
+  rightKnob.releasePointerCapture(e.pointerId);
+  rightPointerId = null;
+  rightLastAngle = null;
 }
 
 document
@@ -303,3 +296,19 @@ document
   .addEventListener("click", () => saveFile(saveCanvas))
 
 window.requestAnimationFrame(renderStep)
+
+// resize the canvas if necessary when the window resizes
+const doResize = () => {
+  if (canvas.width !== canvas.clientWidth) {
+    canvas.width = canvas.clientWidth;
+  }
+  if (canvas.height !== canvas.clientHeight) {
+    canvas.height = canvas.clientHeight;
+  }
+  if (pristine) {
+    x = canvas.width / 2;
+    y = canvas.height / 2;
+  }
+}
+window.addEventListener('resize', doResize);
+setTimeout(doResize, 3000); // resize the canvas once it's animated in
