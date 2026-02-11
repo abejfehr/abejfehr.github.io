@@ -112,7 +112,7 @@
 
       .etch-a-sketch::after {
         font-family: "Satisfy", cursive;
-        content: "Abe A Sketch";
+        content: "Abe\00a0 A\00a0Sketch";
         opacity: 0;
         animation-name: fadeIn;
         animation-duration: 600ms;
@@ -236,6 +236,22 @@
         animation-fill-mode: forwards;
       }
 
+      .controls .mobile {
+        display: none;
+      }
+      .controls .desktop {
+        display: block;
+      }
+
+      @media screen and (max-width: 655px) {
+        .controls .mobile {
+          display: block;
+        }
+        .controls .desktop {
+          display: none;
+        }
+      }
+
       .controls .key {
         border: 1px solid #bbb;
         background-color: #fdfdfd;
@@ -290,8 +306,8 @@
       @keyframes Screen {
         0% {
           opacity: 0;
-          left: 510px;
-          bottom: 245px;
+          left: calc(100% - 65px);
+          bottom: 50%;
           width: 10px;
           height: 100px;
         }
@@ -301,31 +317,9 @@
         100% {
           left: 65px;
           bottom: 65px;
-          width: 520px;
-          height: 345px;
+          width: calc(100% - 65px - 65px);
+          height: calc(100% - 65px - 65px);
           opacity: 1;
-        }
-      }
-
-      @media screen and (max-width: 655px) {
-        @keyframes Screen {
-          0% {
-            opacity: 0;
-            left: calc(100% - 65px);
-            bottom: 50%;
-            width: 10px;
-            height: 100px;
-          }
-          5% {
-            opacity: 1;
-          }
-          100% {
-            left: 65px;
-            bottom: 65px;
-            width: calc(100% - 65px - 65px);
-            height: calc(100% - 65px - 65px);
-            opacity: 1;
-          }
         }
       }
 
@@ -459,9 +453,9 @@
           </div>
         </div>
         <div class="controls">
-          <span class="Q key"></span>/<span class="W key"></span> draws
+          <span class="mobile">Turn the knobs to draw.</span><span class="desktop"><span class="Q key"></span>/<span class="W key"></span> draws
           vertically, <span class="O key"></span>/<span class="P key"></span>
-          draws horizontally, and holding space erases. Click
+          draws horizontally, and holding space erases.</span> Click
           <a href="javascript:void(0)" class="download-link">here</a> to
           download your art.
         </div>
