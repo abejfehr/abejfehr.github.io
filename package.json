@@ -16,6 +16,7 @@
     "is-mobile": "^2.0.0",
     "mobile-detect": "^1.4.3",
     "pick-random": "^2.0.0",
+    "playwright": "^1.58.2",
     "save-as": "^0.1.8",
     "webpack": "^5.104.1"
   },
