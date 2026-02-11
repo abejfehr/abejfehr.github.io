@@ -6,8 +6,9 @@ const BASE_URL = 'http://localhost:4000';
 
 // Pages you want screenshots of
 const pages = [
-  { name: 'home', path: '/' },
-  { name: 'about', path: '/about' },
+  { name: 'home', path: '/', delay: 4000 },
+  { name: 'posts', path: '/posts' },
+  { name: 'post', path: '/posts/building-a-desktop-train-departure-sign' },
 ];
 
 const OUTPUT_DIR = path.resolve(__dirname, '../screenshots');
@@ -30,7 +31,16 @@ const OUTPUT_DIR = path.resolve(__dirname, '../screenshots');
     console.log(`📸 Screenshotting ${url}`);
 
     await page.goto(url, { waitUntil: 'networkidle' });
-    await page.screenshot({ path: filePath, fullPage: true });
+
+    if (p.delay) {
+      console.log(`⏳ Waiting ${p.delay}ms`);
+      await page.waitForTimeout(p.delay);
+    }
+
+    await page.screenshot({
+      path: filePath,
+      fullPage: true,
+    });
   }
 
   await browser.close();
@@ -38,5 +48,5 @@ const OUTPUT_DIR = path.resolve(__dirname, '../screenshots');
 })().catch(err => {
   console.error('❌ Screenshot failed');
   console.error(err);
-  process.exit(1); // Fail the commit
+  process.exit(1);
 });
