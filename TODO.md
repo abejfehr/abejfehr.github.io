@@ -1,3 +1,18 @@
+home page re-do
+- requirements
+  - make it cohesive with the blog
+  - clean, modern design
+  - blog post list on main page maybe
+  - something unique
+    - I considered an SVG drawing of myself
+    - interactive simulation background type of thing
+      - bebas neue font could be cute
+      - blackletter/gothic could be interesting
+      - frederika the great
+      - cabin sketch
+      - londrina shadow/sketch
+      - freehand
+
 blog post nice-to-haves
 - add final picture of the project
 - upload my code to Github
@@ -19,20 +34,19 @@ inspo
 interesting, but probably not what I want: https://www.aadillpickle.com/
 
 etch a sketch
-- don't show PC directions on mobile
 - gallery to share images
 - shaking the mobile phone should clear your image
+  - or a button that you hold to shake it
 
 other ideas:
-- list sites I like
+- comments
+- table of contents on posts
+- list sites/posts I like
 - blogroll
 - search
-- newsletter (kind of insane)
-- comments
 - share links
+- newsletter (kind of insane)
 - link to previous/next posts
-- naming list of articles "archive"
-- blog post titles might need to be a link to itself (idk what's normal)
 - brief about on blog pages, maybe in a sidebar (idk)
 
 blog posts I like:

@@ -6,7 +6,7 @@
 bundle exec jekyll serve
 ```
 
-## How I make the gifs from videos
+## How I make blog post gifs from videos
 
 ```
 rm -rf frames
