@@ -24,6 +24,7 @@ general blog nice-to-haves
 
 inspo
 
+- https://antfu.me/
 - https://hillelwayne.com/
 - https://zed.dev/
 - https://www.nan.fyi/database
@@ -48,6 +49,8 @@ other ideas:
 - newsletter (kind of insane)
 - link to previous/next posts
 - brief about on blog pages, maybe in a sidebar (idk)
+- portfolio
+  - not much to show anymore
 
 blog posts I like:
 linear - why is quality so rare?
