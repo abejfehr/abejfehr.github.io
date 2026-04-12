@@ -63,7 +63,8 @@
     {% assign minutes = minutes_float | ceil %}
 
     <p class="post-date">
-      {{ page.date | date: "%B %d, %Y" }} | {{ minutes }} min read</p>
+      {{ page.date | date: "%B %d, %Y" }} | {{ minutes }} min read
+    </p>
     {{ content }}
     </article>
     <script>

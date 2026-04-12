@@ -34,13 +34,19 @@
 
   /* navbar styles */
   header {
-    max-width: 650px;
     margin: 0 auto;
-    padding: 10px 5px;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+  @media screen and (max-width: 655px) {
+    header {
+      max-width: 650px;
+      padding: 20px 20px;
+    }
+  }
+
 
   header a {
     text-decoration: none;
@@ -74,4 +80,14 @@
   nav ul li {
     display: inline;
   }
+
+  /* Markdown */
+  .highlighter-rouge {
+    margin: 13px 0;
+  }
+  pre.highlight {
+    margin: 0;
+    padding: 20px;
+  }
+
 </style>

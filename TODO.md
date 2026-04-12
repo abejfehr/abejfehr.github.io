@@ -1,3 +1,8 @@
+todo
+- style the inline code blocks
+- add bluesky link to site
+- add some kind of bio to github / README
+
 home page re-do
 - requirements
   - make it cohesive with the blog
@@ -12,6 +17,7 @@ home page re-do
       - cabin sketch
       - londrina shadow/sketch
       - freehand
+      - cal sans is nice
 
 blog post nice-to-haves
 - add final picture of the project
