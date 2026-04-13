@@ -36,10 +36,10 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
   }
-  @media screen and (max-width: 655px) {
+  @media screen and (max-width: 670px) {
     header {
       max-width: 650px;
-      padding: 20px 20px;
+      padding: 20px;
     }
   }
 
@@ -83,6 +83,18 @@
     display: inline;
   }
 
+  /* Container */
+  .container {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 670px) {
+    .container {
+      margin: 0 20px;
+    }
+  }
+
   /* Markdown */
   .highlighter-rouge {
     margin: 13px 0;
@@ -90,6 +102,27 @@
   pre.highlight {
     margin: 0;
     padding: 20px;
+  }
+
+  /* Posts page */
+  h2.post-year {
+    font-size: 60px;
+  }
+  ul.post-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  ul.post-list li {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  ul.post-list li a {
+    color: var(--black);
+    font-weight: 600;
+  }
+  ul.post-list li .meta {
+    font-size: 14px;
+    color: gray;
   }
 
 </style>

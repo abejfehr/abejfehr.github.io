@@ -41,3 +41,5 @@ if (buffer && isMatch(buffer)) {
 ```
 
 With this approach I'm able to get a relevant list of paths in milliseconds as opposed to seconds.
+
+As long as you use git (and depending on the glob pattern) this may work for you as well. Always measure performance!
