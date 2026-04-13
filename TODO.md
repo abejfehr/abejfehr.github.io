@@ -1,7 +1,9 @@
 todo
 - style the inline code blocks in blog posts
+- come up with something for my favicon
 - add the caveat in my glob blog post
 - add some kind of bio to github / README
+- style the posts page
 
 home page re-do
 - requirements
