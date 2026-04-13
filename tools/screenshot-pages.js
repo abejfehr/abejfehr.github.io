@@ -8,7 +8,7 @@ const BASE_URL = 'http://localhost:4000';
 const pages = [
   { name: 'home', path: '/', delay: 4000 },
   { name: 'posts', path: '/posts' },
-  { name: 'post', path: '/posts/building-a-desktop-train-departure-sign' },
+  { name: 'post', path: '/posts/kitchen-sink' }
 ];
 
 const OUTPUT_DIR = path.resolve(__dirname, '../screenshots');
@@ -39,14 +39,13 @@ const OUTPUT_DIR = path.resolve(__dirname, '../screenshots');
 
     await page.screenshot({
       path: filePath,
-      fullPage: true,
+      fullPage: true
     });
   }
 
   await browser.close();
   console.log('✅ Screenshots complete');
 })().catch(err => {
-  console.error('❌ Screenshot failed');
   console.error(err);
-  process.exit(1);
+  throw new Error('Screenshotting failed');
 });

@@ -1,6 +1,6 @@
 todo
-- style the inline code blocks
-- add bluesky link to site
+- style the inline code blocks in blog posts
+- add the caveat in my glob blog post
 - add some kind of bio to github / README
 
 home page re-do
@@ -18,8 +18,9 @@ home page re-do
       - londrina shadow/sketch
       - freehand
       - cal sans is nice
+      - inter?
 
-blog post nice-to-haves
+sign blog post nice-to-haves
 - add final picture of the project
 - upload my code to Github
 
