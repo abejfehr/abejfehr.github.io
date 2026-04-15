@@ -1,19 +1,17 @@
 todo
 - style the inline code blocks in blog posts
 - come up with something for my favicon
-- add some kind of bio to github / README
 
 home page re-do
 - requirements
   - make it cohesive with the blog
   - clean, modern design
-  - blog post list on main page maybe
   - something unique
     - I considered an SVG drawing of myself
     - interactive simulation background type of thing
       - bebas neue font could be cute
       - blackletter/gothic could be interesting
-      - frederika the great
+      - fredericka the great
       - cabin sketch
       - londrina shadow/sketch
       - freehand
@@ -56,7 +54,8 @@ other ideas:
 - newsletter (kind of insane)
 - link to previous/next posts
 - brief about on blog pages, maybe in a sidebar (idk)
-- portfolio
+- something about languages
+- portfolio (or "projects")
   - not much to show anymore
 
 blog posts I like:
