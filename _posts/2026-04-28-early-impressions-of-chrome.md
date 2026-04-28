@@ -47,9 +47,9 @@ _I guess_ it's reasonable for Chrome not to include this because you can just ta
 
 In Chrome, if you have an always-on-top window above the page (like the aforementioned picture-in-picture overlay) and wanted to use the OS' screenshot utilities, you'd have to move the overlay to the side or else it would wind up in the screenshot.
 
-Plus, if you want to compare the before-and-after of a particular element it's nice to capture the exact bounding box of the div, rather than having to approximately drag a box twice in a row just for the screenshots to not end up the same size as each other.
+Plus, if you want to compare the before-and-after of a particular element it's nice to capture the exact bounding box of the div, rather than having to approximately drag a box twice in a row, just for the screenshots differently sized and hard to compare nicely.
 
-I think there are Chrome extensions that provide some screenshotting features, but it seems silly not to build this feature right into the browser.
+I think there are Chrome extensions that provide some screenshotting functionality, but it seems silly not to build this feature right into the browser.
 
 ### Tabs crowd faster
 
@@ -61,7 +61,7 @@ In Firefox you can just scroll left and right to see all the tabs, and again, yo
 
 {% include image.html src="/assets/images/early-impressions-of-chrome/50-firefox-tabs.png" alt="Firefox with 50 tabs open" caption="Also 50 tabs, but so much more readable" %}
 
-As a bonus, I'd like to point out that hovering over a tab in Firefox shows you a preview of that tab. Considering that Chrome really doesn't want you to read tab titles the _least_ they could do was the hover preview, but they really chose to do nothing instead.
+As a bonus, I'd like to point out that hovering over a tab in Firefox shows you a preview of that tab. Considering that Chrome really doesn't want you to read tab titles the _least_ they could do was the hover preview, but they bungled that too.
 
 ## Where Chrome might be better
 
