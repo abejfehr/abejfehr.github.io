@@ -5,7 +5,7 @@ title: Early Impressions of Chrome from a Firefox User
 
 I've used Firefox for many years now, but I had to switch to Chrome recently on my work computer for corporate reasons.
 
-It's only been about a week but I've already developed a set of opinions about features that I miss from Firefox...and a few things that I actually like better about Chrome.
+It's only been about a week but I've already developed a set of opinions on features that I miss from Firefox...and a few things that I actually like better about Chrome.
 
 ## What I don't like about Chrome
 
@@ -27,9 +27,9 @@ Or to view my pull requests at `github.com/pulls`:
 
 In Chrome, I have _no idea_ what the autocomplete behaviour is.
 
-I've visited our repo URLs many times in Chrome and typing <kbd>g</kbd><kbd>i</kbd> autofilled my most visited repo URL (which would've been predictable), but today I visited `githubstatus.com` to check out the daily GitHub outage and now every time I type <kbd>g</kbd><kbd>i</kbd> in the address bar it prefills to `githubstatus.com`, seemingly because I visited it once more recently, but now I can't get it to stop recommending that URL.
+I've visited our repo URLs many times in Chrome and had Chrome to the point where typing <kbd>g</kbd><kbd>i</kbd> autofilled my most visited repo URL, which would've been fine behaviour. But today I visited `githubstatus.com` to check out the daily GitHub outage, and now every time I type <kbd>g</kbd><kbd>i</kbd> in the address bar it prefills to `githubstatus.com`, and I can't get it to stop recommending it!
 
-I've done some initial research to see if you can enable the Firefox autocomplete behaviour in Chrome, but for some reason every article seems to be people asking to port the Chrome autocomplete to Firefox instead. Insane!
+I've done some initial research to see if you can enable the Firefox autocomplete behaviour in Chrome, but for some reason every article seems to be asking how to port the Chrome autocomplete to Firefox instead. Insane!
 
 ### No native picture-in-picture
 
